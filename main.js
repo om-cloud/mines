@@ -36,7 +36,6 @@ function buildBoard() {
 
 function spreadMines() {
     var randomIndexesArray = createRandomMinesIndexesArrray();
-    console.log(randomIndexesArray)
     var SIZE = gLevel.SIZE;
     var counter = 0;
     for (var i = 0; i < SIZE; i++) {
@@ -59,7 +58,6 @@ function iterateBoardToCountNegMines() {
             gBoard[i][j].minesAroundCount = setMinesNegsCount(gBoard, i, j);
         }
     }
-    console.log(gBoard);
 }
 
 /////  Count mines around each cell and set the cell's minesAroundCount.   /////
