@@ -20,6 +20,10 @@ body {
     position: relative;
 }
 
+/* 
+///// Game Board  ///// */
+
+
 .table {
     background-color: #65666a;
     margin: 0 auto;
@@ -81,6 +85,8 @@ td {
     background-color: rgb(101, 137, 172);
 }
 
+/* /////   Lives And Hints  ///// */
+
 .hints {
     margin-left: 1vh;
     bottom: 6vh;
@@ -125,6 +131,9 @@ td {
         opacity: 1;
     }
 }
+
+/* 
+/////     Buttons   ///// */
 
 .buttons {
     position: absolute;
@@ -194,6 +203,14 @@ td {
     /* color: white !important; */
 }
 
+.signupRound{
+    margin-left:5vh;
+    background-color: #bb5613;
+}
+
+/* ////  Timer  -  Extras ///// */
+
+
 .Timer,
 .messageToUser,
 .life {
@@ -217,4 +234,89 @@ p {
     margin-left: 3px;
     margin-right: 5vh;
     font-size: 1.9em;
+}
+
+.non-display {
+    display: none
+}
+
+
+
+/* /////////  Form - SignUp ///////////////// */
+
+.sign-up {
+    font-size: 250%;
+    color: black;
+    text-align: center;
+}
+
+.its-free {
+    font-size: 16;
+    color: black;
+    text-align: center;
+}
+
+.input {
+    text-align: center;
+    width: 90%;
+    height: 4%;
+}
+
+.button {
+    text-align: center;
+    width: 93%;
+    height: 5.7%;
+    background-color: #4CAF50;
+    font-size: 2.3vh;
+    border: #7CFC00 1px;
+    color: white;
+    text-align: center;
+    opacity: 0.9;
+    transition: 0.3s;
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+.button:hover {
+    width: 91%;
+    background-color: green;
+    color: white;
+    border: #7CFC00 1px;
+    color: white;
+    opacity: 0.9;
+    transition: 0.3s;
+    display: inline-block;
+    border: 1px solid #7FFF00;
+}
+
+
+a:hover {
+    color: red;
+}
+
+.information-request {
+    color: rgb(34, 34, 34);
+    font-size: 2.7vh;
+}
+
+.allbox {
+    background-color: #f0f3f7;
+    margin: auto;
+    text-align: center;
+    width: 40%;
+    max-width: 300px;
+    border: 1px solid rgb(203, 223, 253);
+    padding: 15px;
+    border-radius:  10px;
+    -moz-box-shadow: 0 0 27px rgb(180, 180, 180);
+    -webkit-box-shadow: 0 0 27px rgb(180, 180, 180);
+    box-shadow: 0 0 27px rgb(180, 180, 180);
+}
+
+.information-request-titles {
+    text-align: left;
+    padding-left: 15px;
+    padding-bottom: 2px;
 }

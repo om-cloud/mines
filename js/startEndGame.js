@@ -70,6 +70,7 @@ function startNewGame() {
 function reAssignGlobalVariables() {
     gTime = 0;
     gCounter = 1;
+    gGame.secsPassed=0;
     gGame.isOn = true;
     gGame.shownCount = 0;
     gGame.markedCount = 0;

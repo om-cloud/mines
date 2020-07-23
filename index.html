@@ -10,7 +10,7 @@
 
 <body onload="initGame()" oncontextmenu="return false;">
 
-    <div class="container">
+    <div class="container ">
 
         <div class="buttons">
             <button class="myButton2 myButton3 myButtonRed2 " onclick="startNewGame()">Start Game</button>
@@ -34,21 +34,62 @@
             </tbody>
         </table>
         <div>
-            <p><span class="Timer">Timer 000:000</span></p>
+            <p><span class="Timer">Timer : 000</span></p>
             <p><span class="messageToUser">Go Play 😃</span> 
+                <button class="myButton2 myButtonRed2 signupRound"
+                onclick="openSignUpForm()">SignUp</button>
                 <!-- <span class="life">
                     <img class="life life1 " src="img/SoldierSmile.png" alt="">
                     <img class="life life2 " src="img/SoldierSmile.png" alt="">
                     <img class="life life3 " src="img/SoldierSmile.png" alt="">
                 </span> -->
             </p>
-            <script src="js/startEndGame.js"></script>
-            <script src="js/userChoices.js"></script>
-            <script src="js/timer.js"></script>
-            <script src="js/utils.js"></script>
-            <script src="js/main.js"></script>
+
         </div>
+       
     </div>
+    <form class="form non-display"  onsubmit="checkform();">
+        <div class="allbox">
+            <h1 class="sign-up">
+                Sign Up
+            </h1></br>
+            <span class="its-free">
+                It's free and only takes one minute
+            </span></br></br>
+            <span class="information-request"></br>
+                <div class="information-request-titles">First Name:</div>
+                <input type="text" name="first name" class="input" id="firstname1"></input></br>
+            </span>
+            <span class="information-request"></br>
+                <div class="information-request-titles">Last Name:</div>
+                <input type="text" name="last name" class="input" id="lastname1"></input></br>
+            </span>
+            <span class="information-request"></br>
+                <div class="information-request-titles">Email:</div>
+                <input type="email" name="email" class="input" id="email"></input></br>
+            </span>
+            <span class="information-request"></br>
+                <div class="information-request-titles">Password:</div>
+                <input type="password" name="password" class="input" id="password1"></input></br>
+            </span>
+            <span class="information-request"></br>
+                <div class="information-request-titles">Confirm Password:</div>
+                <input type="password" name="confirm password" class="input" id="confirmpassword1"></input></br>
+            </span>
+            <span>
+                </br>
+                <br>
+                <a> <input type="submit" value=" Sign Up " class="button"></input> </a></br></br>
+            </span>
+        </div>
+
+    </form>
+    <script src="js/signup.js"> </script>
+    <script src="js/startEndGame.js"></script>
+    <script src="js/userChoices.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

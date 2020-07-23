@@ -78,3 +78,20 @@ for(var i=0;i<gLevel.MINES;i++){
 playBomingAudio()
 playBomingAudio()
 }
+
+
+function showBestScores(){
+    if(gLevel.SIZE ===4 && localStorage.getItem("4X4") > gGame.secsPassed ){
+        localStorage.setItem("4x4",  gGame.secsPassed);
+        document.querySelector('four').innerText===gGame.secsPassed;
+    }
+    if(gLevel.SIZE ===4 && localStorage.getItem("8X8") > gGame.secsPassed ){
+        localStorage.setItem("8x8",  gGame.secsPassed);
+        document.querySelector('four').innerText===gGame.secsPassed;
+    }
+    if(gLevel.SIZE ===4 && localStorage.getItem("12X12") > gGame.secsPassed ){
+        localStorage.setItem("12x12",  gGame.secsPassed);
+        document.querySelector('four').innerText===gGame.secsPassed;
+    }
+
+}
