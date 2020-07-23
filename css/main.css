@@ -24,7 +24,7 @@ body {
     background-color: #65666a;
     margin: 0 auto;
     position: relative;
-    bottom: 3.3vh;
+    bottom: 5.2vh;
 }
 
 .grid {
@@ -89,14 +89,19 @@ td {
 }
 
 .hints {
-    margin-left: 3vh;
-    bottom: 5vh;
+    margin-left: 1vh;
+    bottom: 6vh;
+    position: relative;
+}
+.Lifes {
+    margin-left: 1vh;
+    bottom: 6.7vh;
     position: relative;
 }
 
-img {
-    height: 6vh;
-    margin-right: 1.5vh;
+.hint {
+    height: 4.7vh;
+    margin-right: 0.5vh;
     cursor: pointer;
     
 }
@@ -125,7 +130,7 @@ img {
 }
 .buttons {
     position: absolute;
-    bottom: 530px;
+    bottom: 546px;
 }
 
 .myButton2 {
@@ -135,12 +140,12 @@ img {
     /* background-color:#ffffff; */
     width: 4em;
     height: 4em;
-    font-weight: 600;
+    font-weight: 500;
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
     font-family: 'Roboto';
-    font-size: 0.82em;
+    font-size: 0.85em;
     text-decoration: none;
     text-shadow: 0px 1px 0px #2b2b2c;
     margin-left: 0.65vh;
@@ -194,11 +199,12 @@ img {
 }
 
 .Timer,
-.messageToUser {
+.messageToUser,
+.life {
     color: white;
     text-align: center;
     font-family: inherit;
-    font-size: 2em;
+    font-size: 1.7em;
     margin: 0 auto;
     margin-left: 10px;
 }
@@ -209,4 +215,10 @@ p {
 
 .hidden{
   visibility: hidden; 
+}
+
+.life{
+    margin-left: 3px;
+ margin-right: 5vh;
+ font-size: 1.9em;
 }

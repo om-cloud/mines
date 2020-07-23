@@ -17,8 +17,9 @@ var gExtraNoNegPos = [];
 var gFirstI;
 var gFirstJ;
 var gElCell;
-var gIsHint=false;
-var gHintsCounter=3;
+var gIsHint = false;
+var gHintsCounter = 3;
+var gLivesNumber = 3;
 
 
 /////  This is an object by which the board size is set /////
@@ -72,21 +73,23 @@ function reAssignGlobalVariables() {
     gGame.isOn = true;
     gGame.shownCount = 0;
     gGame.markedCount = 0;
-    gIsHint=false;
-    gHintsCounter=3;
+    gIsHint = false;
+    gHintsCounter = 3;
 }
 
 /////  Game ends when all mines are marked, and all the other cells are shown   /////
 
 function checkGameWon() {
-
-    if (gGame.shownCount + gGame.markedCount === gLevel.SIZE * gLevel.SIZE) {
+    var cellsNum = gLevel.SIZE * gLevel.SIZE;
+    if (((gGame.shownCount + gGame.markedCount  === cellsNum)) &&
+        (gGame.markedCount === gLevel.MINES - (3 - gLivesNumber))) {
         document.querySelector(".messageToUser").innerText = 'You Won 😁'
         gGame.isOn = false;
         stoptimer();
         return true
     }
 }
+
 
 /////  End Game  /////
 

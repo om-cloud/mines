@@ -13,14 +13,18 @@
 
         <div class="buttons">
             <button class="myButton2 myButton3 myButtonRed2 " onclick="startNewGame()">Start Game</button>
-            <button class="myButton2 myButtonRed2" onclick="chooseLevel(4, this)">4x4</button>
-            <button class="myButton2 myButtonRed2" onclick="chooseLevel(8, this)">8x8</button>
-            <button class="myButton2 myButtonRed2" onclick="chooseLevel(12, this)">12x12</button>
+            <button class="myButton2 myButtonRed2" onclick="chooseLevel(4, this)">4X4</button>
+            <button class="myButton2 myButtonRed2" onclick="chooseLevel(8, this)">8X8</button>
+            <button class="myButton2 myButtonRed2" onclick="chooseLevel(12, this)">12X12</button>
+        </div>
+        <div class="Lifes">
+            <span class="life">Lives : 3</span>
         </div>
         <div class="hints">
-            <img class="hint1 " src="img/yellowbulb.png" onclick="giveHint(this)" alt="">
-            <img class="hint2 " src="img/yellowbulb.png" onclick="giveHint(this)" alt="">
-            <img class="hint3 " src="img/yellowbulb.png" onclick="giveHint(this)" alt="">
+            <span class="life">Hints : </span>
+            <img class="hint hint1 " src="img/yellowbulb.png" onclick="giveHint(this)" alt="">
+            <img class="hint hint2 " src="img/yellowbulb.png" onclick="giveHint(this)" alt="">
+            <img class="hint hint3 " src="img/yellowbulb.png" onclick="giveHint(this)" alt="">
         </div>
         <table class="table">
 
@@ -30,7 +34,13 @@
         </table>
         <div>
             <p><span class="Timer">Timer 000:000</span></p>
-            <p><span class="messageToUser">Go Play 😃</span></p>
+            <p><span class="messageToUser">Go Play 😃</span>
+                <!-- <span class="life">
+                    <img class="life life1 " src="img/SoldierSmile.png" alt="">
+                    <img class="life life2 " src="img/SoldierSmile.png" alt="">
+                    <img class="life life3 " src="img/SoldierSmile.png" alt="">
+                </span> -->
+            </p>
             <script src="js/startEndGame.js"></script>
             <script src="js/userChoices.js"></script>
             <script src="js/timer.js"></script>

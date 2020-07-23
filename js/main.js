@@ -152,9 +152,19 @@ function cellClicked(elCell, i, j) {
             renderCell(elCell, cell.minesAroundCount)
         } else if (!cell.isMine && cell.minesAroundCount === 0) {
             expandShown(gBoard, i, j);
-        } else if (cell.isMine) {
+        } else if(gLivesNumber === 2 || gLivesNumber === 3){
+            gLivesNumber--;
+            document.querySelector('.life').innerText=`Lives : Only ${gLivesNumber} !`
+            cell.isShown = true;
+            gGame.shownCount++;
+            elCell.style.backgroundColor = 'rgb(101, 137, 172)'
+            renderCell(elCell, MINE)
+        } 
+        else if (cell.isMine && gLivesNumber === 1) {
             document.querySelector(".messageToUser").innerText = 'You Lost 🤯'
             elCell.style.backgroundColor = 'rgb(255, 36, 36)'
+            gLivesNumber--;
+            document.querySelector('.life').innerText=`Lives : Dead`
             exposeMines()
             endGame();
         }
