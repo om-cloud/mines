@@ -26,9 +26,6 @@ function buildBoard() {
             board[i][j] = CELL;
         }
     }
-    //board[2][3].isMine = true;
-    //board[1][1].isMine = true;
-    console.log(board);
     return board;
 }
 
@@ -185,11 +182,8 @@ function checkGameWon() {
     var SIZE = gLevel.SIZE;
     for (var i = 0; i < SIZE; i++) {
         for (var j = 0; j < SIZE; j++) {
-            console.log(gBoard)
             if (((gBoard[i][j].isMine && !gBoard[i][j].isMarked)) ||
                 (!gBoard[i][j].isMine && !gBoard[i][j].isShown)) {
-                gCounterXXXX++
-                console.log('check', gCounterXXXX)
                 return false
             }
         }
@@ -210,6 +204,9 @@ function checkGameWon() {
 
 function expandShown(board, cellI, cellJ) {
     var SIZE = gLevel.SIZE;
+    if(gExtraNoNegPos.length > 0){
+        gExtraNoNegPos.splice(0, 1)
+    }
     for (var i = cellI - 1; i <= cellI + 1; i++) {
         if (i < 0 || i >= SIZE) continue
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
@@ -232,9 +229,7 @@ function expandShown(board, cellI, cellJ) {
             }
 
         }
-        if(gExtraNoNegPos.length > 0){
-            gExtraNoNegPos.splice(0, 1)
-        }
+
     }
     while (gExtraNoNegPos.length > 0) {
         expandShown(gBoard, gExtraNoNegPos[0].i, gExtraNoNegPos[0].j);
