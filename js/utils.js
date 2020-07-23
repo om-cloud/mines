@@ -40,58 +40,65 @@ function bubbleSort(a) {
 
 function playBomingAudio() {
     var sound = new Audio()
-      sound.src = 'sound/Explosion.wav'
-      sound.play()
+    sound.src = 'sound/Explosion.wav'
+    sound.play()
 }
 
 function playClickingAudio() {
     var sound = new Audio()
-      sound.src = 'sound/clicking.wav'
-      sound.play()
+    sound.src = 'sound/clicking.wav'
+    sound.play()
 }
 
 function playMarkingAudio() {
     var sound = new Audio()
-      sound.src = 'sound/marking.wav'
-      sound.play()
+    sound.src = 'sound/marking.wav'
+    sound.play()
 }
 
 function playWinningAudio() {
     var sound = new Audio()
-      sound.src = 'sound/winning.mp3'
-      sound.play()
+    sound.src = 'sound/winning.mp3'
+    sound.play()
 }
 
 
-function playBombingEndGameByMinesNumber(){
-for(var i=0;i<gLevel.MINES;i++){
-    setTimeout(() => {
-        playBomingAudio()
-        playBomingAudio()
-    }, 200);
-    setTimeout(() => {
-        playBomingAudio()
-        playBomingAudio()
-    }, 300);
+function playBombingEndGameByMinesNumber() {
+    for (var i = 0; i < gLevel.MINES; i++) {
+        setTimeout(() => {
+            playBomingAudio()
+            playBomingAudio()
+        }, 200);
+        setTimeout(() => {
+            playBomingAudio()
+            playBomingAudio()
+        }, 300);
+    }
+
+    playBomingAudio()
+    playBomingAudio()
 }
 
-playBomingAudio()
-playBomingAudio()
-}
 
-
-function showBestScores(){
-    if(gLevel.SIZE ===4 && localStorage.getItem("4X4") > gGame.secsPassed ){
-        localStorage.setItem("4x4",  gGame.secsPassed);
-        document.querySelector('four').innerText===gGame.secsPassed;
+function showBestScores() {
+    var bestResult;
+    if (gLevel.SIZE === 4) {
+        bestResult = localStorage.getItem('four');
+        if (bestResult === undefined || bestResult > gLevel.secsPassed) {
+            localStorage.setItem('four', gLevel.secsPassed);
+            document.querySelector('four').innerText === gGame.secsPassed;
+        }
+    } else if (gLevel.SIZE === 8) {
+        bestResult = localStorage.getItem('eight');
+        if (bestResult === undefined || bestResult > gLevel.secsPassed) {
+            localStorage.setItem('eight', gLevel.secsPassed);
+            document.querySelector('eight').innerText === gGame.secsPassed;
+        }
+    } else if (gLevel.SIZE === 12) {
+        bestResult = localStorage.getItem('twelve');
+        if (bestResult === undefined || bestResult > gLevel.secsPassed) {
+            localStorage.setItem('twelve', gLevel.secsPassed);
+            document.querySelector('twelve').innerText === gGame.secsPassed;
+        }
     }
-    if(gLevel.SIZE ===4 && localStorage.getItem("8X8") > gGame.secsPassed ){
-        localStorage.setItem("8x8",  gGame.secsPassed);
-        document.querySelector('four').innerText===gGame.secsPassed;
-    }
-    if(gLevel.SIZE ===4 && localStorage.getItem("12X12") > gGame.secsPassed ){
-        localStorage.setItem("12x12",  gGame.secsPassed);
-        document.querySelector('four').innerText===gGame.secsPassed;
-    }
-
 }
