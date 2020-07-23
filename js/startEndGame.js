@@ -86,7 +86,7 @@ function checkGameWon() {
         (gGame.markedCount === gLevel.MINES - (3 - gLivesNumber))) {
         document.querySelector(".messageToUser").innerText = 'You Won 😁'
         playWinningAudio();
-        showBestScores();
+        //showBestScores();
         gGame.isOn = false;
         stoptimer();
         return true
