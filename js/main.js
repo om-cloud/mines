@@ -145,6 +145,7 @@ function cellClicked(elCell, i, j) {
     }
     var cell = gBoard[i][j];
     if (!cell.isMarked && gGame.isOn && !cell.isShown) {
+            playClickingAudio();
         if (!cell.isMine && cell.minesAroundCount > 0) {
             cell.isShown = true;
             gGame.shownCount++;
@@ -153,6 +154,7 @@ function cellClicked(elCell, i, j) {
         } else if (!cell.isMine && cell.minesAroundCount === 0) {
             expandShown(gBoard, i, j);
         } else if(gLivesNumber === 2 || gLivesNumber === 3){
+            playBomingAudio()
             gLivesNumber--;
             document.querySelector('.life').innerText=`Lives : Only ${gLivesNumber} !`
             cell.isShown = true;
@@ -161,6 +163,7 @@ function cellClicked(elCell, i, j) {
             renderCell(elCell, MINE)
         } 
         else if (cell.isMine && gLivesNumber === 1) {
+            playBombingEndGameByMinesNumber()
             document.querySelector(".messageToUser").innerText = 'You Lost 🤯'
             elCell.style.backgroundColor = 'rgb(255, 36, 36)'
             gLivesNumber--;
@@ -179,10 +182,12 @@ function cellClicked(elCell, i, j) {
 function cellMarked(elCell, i, j) {
     if (gGame.isOn)
         if (gBoard[i][j].isMarked) {
+            playMarkingAudio()
             gBoard[i][j].isMarked = false;
             renderCell(elCell, EMPTY);
             gGame.markedCount--;
         } else {
+            playMarkingAudio()
             gBoard[i][j].isMarked = true;
             renderCell(elCell, FLAG);
             gGame.markedCount++;
