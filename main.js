@@ -179,22 +179,13 @@ function cellMarked(elCell, i, j) {
 
 function checkGameWon() {
 
-    var SIZE = gLevel.SIZE;
-    for (var i = 0; i < SIZE; i++) {
-        for (var j = 0; j < SIZE; j++) {
-            if (((gBoard[i][j].isMine && !gBoard[i][j].isMarked)) ||
-                (!gBoard[i][j].isMine && !gBoard[i][j].isShown)) {
-                return false
-            }
-        }
-    }
-    // if(gGame.isShown + gGame.markedCount === gLevel.SIZE*gLevel.SIZE - gLevel.MINES)
-    // {
+     if(gGame.shownCount + gGame.markedCount === gLevel.SIZE*gLevel.SIZE)
+     {
     document.querySelector(".messageToUser").innerText = 'You Won 😁'
     gGame.isOn = false;
     stoptimer();
     return true
-    
+    }
 }
 
 /////  When user clicks a cell with no mines around, we need to open not only  /////
