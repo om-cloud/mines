@@ -13,18 +13,19 @@ var gCounter = 1;
 var gGridLength = 4;
 var gPreviousPushedButton = null;
 var gTime = 0;
-var gExtraNoNegPos=[];
+var gExtraNoNegPos = [];
 var gFirstI;
 var gFirstJ;
 var gElCell;
+var gIsHint=false;
+var gHintsCounter=3;
 
 
 /////  This is an object by which the board size is set /////
 
-var gLevel = 
-{ 
-    SIZE: 4, 
-    MINES: 2 
+var gLevel = {
+    SIZE: 4,
+    MINES: 2
 };
 
 
@@ -33,12 +34,11 @@ var gLevel =
 /////  How many cells are shown markedCount: How many cells are marked (with a flag)  /////
 /////  secsPassed: How many seconds passed  /////
 
-var gGame = 
-{ 
-    isOn: false, 
-    shownCount: 0, 
-    markedCount: 0, 
-    secsPassed: 0 
+var gGame = {
+    isOn: false,
+    shownCount: 0,
+    markedCount: 0,
+    secsPassed: 0
 };
 
 
@@ -47,10 +47,10 @@ var gGame =
 /////  This is called when page loads  /////
 
 function initGame() {
-gBoard=buildBoard();
-spreadMines();
-iterateBoardToCountNegMines();
-renderBoard(gBoard);
+    gBoard = buildBoard();
+    spreadMines();
+    iterateBoardToCountNegMines();
+    renderBoard(gBoard);
 }
 
 
@@ -67,30 +67,30 @@ function startNewGame() {
 /////  reAssign Global Variables  /////
 
 function reAssignGlobalVariables() {
-
     gTime = 0;
     gCounter = 1;
     gGame.isOn = true;
     gGame.shownCount = 0;
     gGame.markedCount = 0;
+    gIsHint=false;
+    gHintsCounter=3;
 }
 
 /////  Game ends when all mines are marked, and all the other cells are shown   /////
 
 function checkGameWon() {
 
-    if(gGame.shownCount + gGame.markedCount === gLevel.SIZE*gLevel.SIZE)
-    {
-   document.querySelector(".messageToUser").innerText = 'You Won 😁'
-   gGame.isOn = false;
-   stoptimer();
-   return true
-   }
+    if (gGame.shownCount + gGame.markedCount === gLevel.SIZE * gLevel.SIZE) {
+        document.querySelector(".messageToUser").innerText = 'You Won 😁'
+        gGame.isOn = false;
+        stoptimer();
+        return true
+    }
 }
 
 /////  End Game  /////
 
-function endGame(){
+function endGame() {
     gGame.isOn = false;
     stoptimer();
 }
@@ -111,5 +111,3 @@ function exposeMines() {
     }
 
 }
-
-

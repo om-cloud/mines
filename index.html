@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body onload="initGame()" oncontextmenu="return false;">
     <div class="container">
 
@@ -16,7 +17,11 @@
             <button class="myButton2 myButtonRed2" onclick="chooseLevel(8, this)">8x8</button>
             <button class="myButton2 myButtonRed2" onclick="chooseLevel(12, this)">12x12</button>
         </div>
-
+        <div class="hints">
+            <img class="hint1" src="img/yellowbulb.png" onclick="giveHint()" alt="">
+            <img class="hint2" src="img/yellowbulb.png" onclick="giveHint()" alt="">
+            <img class="hint3" src="img/yellowbulb.png" onclick="giveHint()" alt="">
+        </div>
         <table class="table">
 
             <tbody class="grid">
@@ -27,6 +32,7 @@
             <p><span class="Timer">Timer 000:000</span></p>
             <p><span class="messageToUser">Go Play 😃</span></p>
             <script src="js/startEndGame.js"></script>
+            <script src="js/userChoices.js"></script>
             <script src="js/timer.js"></script>
             <script src="js/utils.js"></script>
             <script src="js/main.js"></script>

@@ -18,7 +18,7 @@ function timer(miliSeconds, seconds, miliSecondToShow, secondsToShow) {
         timer(miliSeconds, seconds, miliSecondToShow, secondsToShow);
     }, 1);
     miliSeconds += 1;
-    if (!gGame.isOn && gGame.shownCount !==0) {  ///  to add case of winning
+    if (!gGame.isOn && gGame.shownCount !== 0) { ///  to add case of winning
         stoptimer();
         return
     }
@@ -42,14 +42,11 @@ function createTimerStringToDom(miliSeconds, seconds, miliSecondToShow, secondsT
     }
     if (seconds === 0) {
         secondsToShow = '000';
-    }
-    else if (seconds < 10) {
+    } else if (seconds < 10) {
         secondsToShow = '00' + seconds;
-    }
-    else if (seconds >= 10 && seconds <= 100) {
+    } else if (seconds >= 10 && seconds <= 100) {
         secondsToShow = '0' + seconds;
-    }
-    else if (seconds >= 100 && seconds <= 1000) {
+    } else if (seconds >= 100 && seconds <= 1000) {
         secondsToShow = seconds;
     }
     return 'Timer : ' + secondsToShow + ':' + miliSecondToShow

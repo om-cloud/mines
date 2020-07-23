@@ -98,7 +98,7 @@ function renderBoard(board) {
             // }
             var domIcon = EMPTY
             htmlStr += `<td class="cell ${className}"
-                onclick="cellClicked(this, ${i}, ${j})"
+           onclick="cellClicked(this, ${i}, ${j});exposeneighbours(this, ${i}, ${j})"
                 oncontextmenu="cellMarked(this, ${i},${j})"
                 >${domIcon}</td>`;
             //counter++;
@@ -133,14 +133,15 @@ function addClassesAtChangeLevel(size) {
 ////  Called when a cell (td) is clicked ////
 
 function cellClicked(elCell, i, j) {
-    if(gGame.shownCount===0 && gBoard[i][j].isMine){  // make sure not to hit a mine at first click
-        gFirstI=i;
-        gFirstJ=j;
+    if(gIsHint) return
+    if (gGame.shownCount === 0 && gBoard[i][j].isMine) { // make sure not to hit a mine at first click
+        gFirstI = i; // to change to more efficient operation later !
+        gFirstJ = j;
         gGame.isOn = false;
         reAssignGlobalVariables();
         initGame();
-         var newElCell = document.querySelector(`.cell-${gFirstI}-${gFirstJ}`);
-         cellClicked(newElCell, gFirstI,gFirstJ)
+        var newElCell = document.querySelector(`.cell-${gFirstI}-${gFirstJ}`);
+        cellClicked(newElCell, gFirstI, gFirstJ)
     }
     var cell = gBoard[i][j];
     if (!cell.isMarked && gGame.isOn && !cell.isShown) {
@@ -186,7 +187,7 @@ function cellMarked(elCell, i, j) {
 
 function expandShown(board, cellI, cellJ) {
     var SIZE = gLevel.SIZE;
-    if(gExtraNoNegPos.length > 0){
+    if (gExtraNoNegPos.length > 0) {
         gExtraNoNegPos.splice(0, 1)
     }
     for (var i = cellI - 1; i <= cellI + 1; i++) {
@@ -196,10 +197,10 @@ function expandShown(board, cellI, cellJ) {
             var cell = board[i][j];
             var elCellExp = document.querySelector(`.cell-${i}-${j}`);
             elCellExp.style.backgroundColor = 'rgb(101, 137, 172)'
-            if(!cell.isShown){
+            if (!cell.isShown) {
                 cell.isShown = true;
                 gGame.shownCount++;
-                if (cell.minesAroundCount !== 0 ) {
+                if (cell.minesAroundCount !== 0) {
                     renderCell(elCellExp, cell.minesAroundCount);
                 } else {
                     gExtraNoNegPos.push({

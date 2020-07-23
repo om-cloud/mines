@@ -35,6 +35,3 @@ function bubbleSort(a) {
         }
     }
 }
-
-
-

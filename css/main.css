@@ -4,13 +4,13 @@ body {
     font: 100 14px 'Roboto';
 }
 
-.container{
+.container {
     background-color: #555a63;
     margin: 0 auto;
     /* padding-right: 10px;
     padding-left: 10px; */
     padding-top: 130px;
-    padding-bottom:20px;
+    padding-bottom: 20px;
     width: 310px;
     max-height: 620px;
     -moz-box-shadow: 0 0 27px rgb(180, 180, 180);
@@ -20,24 +20,26 @@ body {
     position: relative;
 }
 
-.table{
+.table {
     background-color: #65666a;
-    margin: 0 auto; 
-    /* position: relative; */
-
+    margin: 0 auto;
+    position: relative;
+    bottom: 3.3vh;
 }
+
 .grid {
-/* 
+    /* 
     min-width: 340px;
     min-height: 340px; */
-    
+
 }
-th{
+
+th {
     background-color: #434447;
     color: white;
     /* display: flex; */
     justify-content: center;
-    align-content: center; 
+    align-content: center;
 }
 
 td {
@@ -49,69 +51,90 @@ td {
     font-family: inherit;
     cursor: pointer;
 }
-.hoverOverCell:hover{
+
+.hoverOverCell:hover {
     background-color: #f8ba33;
-    transition-duration:0.2s;
+    transition-duration: 0.2s;
 }
-.grid-four{
+
+.grid-four {
     padding: 7.4px;
     font-size: 2.3em;
-    width:57px;
-    height:57px;
+    width: 57px;
+    height: 57px;
     min-width: 57px;
     min-height: 57px;
 }
-.grid-eight{
-padding:3px;
-font-size:1.4em;
-width:29px;
-height:29px;
-min-width: 29px;
-min-height:29px;
+
+.grid-eight {
+    padding: 3px;
+    font-size: 1.4em;
+    width: 29px;
+    height: 29px;
+    min-width: 29px;
+    min-height: 29px;
 }
-.grid-twelve{
-padding:2px;
-font-size: 1em;
-width:18.5px;
-height:18.5px;
-min-width: 18.5px;
-min-height: 18.5px;
+
+.grid-twelve {
+    padding: 2px;
+    font-size: 1em;
+    width: 18.5px;
+    height: 18.5px;
+    min-width: 18.5px;
+    min-height: 18.5px;
 }
-.touched{
+
+.touched {
     background-color: rgb(101, 137, 172);
 }
 
-.buttons{
- position: absolute;
- bottom: 480px;
+.hints {
+    margin-left: 3vh;
+    bottom: 5vh;
+    position: relative;
 }
+
+img {
+    height: 6vh;
+    margin-right: 1.5vh;
+    cursor: pointer;
+}
+
+.buttons {
+    position: absolute;
+    bottom: 530px;
+}
+
 .myButton2 {
-    -webkit-box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.11); 
+    -webkit-box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.11);
     box-shadow: 0px 3px 15px -2px rgba(0, 0, 0, 0.11);
-	/* background:linear-gradient(to bottom, #ffffff 5%, #fafafa 100%); */
+    /* background:linear-gradient(to bottom, #ffffff 5%, #fafafa 100%); */
     /* background-color:#ffffff; */
-    width:4em;
-    height:4em;
+    width: 4em;
+    height: 4em;
     font-weight: 600;
-	border-radius:50%;
-	display:inline-block;
-	cursor:pointer;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
     font-family: 'Roboto';
-	font-size:0.82em;
-	text-decoration:none;
-    text-shadow:0px 1px 0px #2b2b2c;
+    font-size: 0.82em;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #2b2b2c;
     margin-left: 0.65vh;
 }
+
 .myButton2:hover {
-	background:linear-gradient(to bottom, #fafafa 5%, #fafafa 100%);
-    background-color:#fafbfc;
-    -webkit-box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.11); 
-    box-shadow: 0px 3px 14px 0px rgba(0,0,0,0.11);
+    background: linear-gradient(to bottom, #fafafa 5%, #fafafa 100%);
+    background-color: #fafbfc;
+    -webkit-box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.11);
+    box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.11);
 
 }
-.myButton2:active, .myButton2:focus {
-    position:relative;
-    top:1px;
+
+.myButton2:active,
+.myButton2:focus {
+    position: relative;
+    top: 1px;
     outline: none !important;
 
 }
@@ -129,23 +152,26 @@ min-height: 18.5px;
     /* border:1px solid #863030; */
     border: 1px solid white;
     color: whitesmoke;
-    transition-duration:0.3s;
+    transition-duration: 0.3s;
 }
 
-.myButton3{
+.myButton3 {
     /* !importent is a really bad CSS practice  */
-    border-radius:15px !important;
-    width:8em !important;
+    border-radius: 15px !important;
+    width: 8em !important;
     margin-left: 3vh !important;
     margin-right: 2.2vh !important;
 }
-.pushedButton{
+
+.pushedButton {
     background-color: rgb(133, 154, 172);
-    transition-duration:0.3s;
+    transition-duration: 0.3s;
     /* background-color: grey !important; */
     /* color: white !important; */
 }
-.Timer, .messageToUser{
+
+.Timer,
+.messageToUser {
     color: white;
     text-align: center;
     font-family: inherit;
@@ -153,6 +179,12 @@ min-height: 18.5px;
     margin: 0 auto;
     margin-left: 10px;
 }
-p{
-    color:rgb(255, 36, 36)
+
+p {
+    color: rgb(255, 36, 36)
+}
+
+.hidden{
+    /* display: none; */
+  visibility: hidden; 
 }
