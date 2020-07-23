@@ -1,7 +1,5 @@
 'use strict'
 
-
-
 /////  Builds the board Set mines at random locations Call setMinesNegsCount()  /////
 /////  Return the created board /////
 
@@ -26,9 +24,6 @@ function buildBoard() {
             board[i][j] = CELL;
         }
     }
-    //board[2][3].isMine = true;
-    //board[1][1].isMine = true;
-    console.log(board);
     return board;
 }
 
@@ -62,7 +57,6 @@ function iterateBoardToCountNegMines() {
 
 /////  Count mines around each cell and set the cell's minesAroundCount.   /////
 
-
 function setMinesNegsCount(board, cellI, cellJ) {
     var SIZE = gLevel.SIZE;
     var counterNegsMines = 0;
@@ -76,7 +70,6 @@ function setMinesNegsCount(board, cellI, cellJ) {
     }
     return counterNegsMines;
 }
-
 
 /////  Render the board as a <table> to the page  ///// 
 
@@ -115,7 +108,6 @@ function renderBoard(board) {
     var elBoard = document.querySelector('.grid');
     elBoard.innerHTML = htmlStr;
 }
-
 
 /////  Determine Board Size  /////
 
@@ -178,31 +170,6 @@ function cellMarked(elCell, i, j) {
         }
 }
 
-/////  Game ends when all mines are marked, and all the other cells are shown   /////
-
-function checkGameWon() {
-
-    var SIZE = gLevel.SIZE;
-    for (var i = 0; i < SIZE; i++) {
-        for (var j = 0; j < SIZE; j++) {
-            console.log(gBoard)
-            if (((gBoard[i][j].isMine && !gBoard[i][j].isMarked)) ||
-                (!gBoard[i][j].isMine && !gBoard[i][j].isShown)) {
-                gCounterXXXX++
-                console.log('check', gCounterXXXX)
-                return false
-            }
-        }
-    }
-    // if(gGame.isShown + gGame.markedCount === gLevel.SIZE*gLevel.SIZE - gLevel.MINES)
-    // {
-    document.querySelector(".messageToUser").innerText = 'You Won 😁'
-    gGame.isOn = false;
-    stoptimer();
-    return true
-    
-}
-
 /////  When user clicks a cell with no mines around, we need to open not only  /////
 /////  that cell, but also its neighbors.  /////
 /////  NOTE: start with a basic implementation that only opens the non-mine  /////
@@ -210,6 +177,9 @@ function checkGameWon() {
 
 function expandShown(board, cellI, cellJ) {
     var SIZE = gLevel.SIZE;
+    if(gExtraNoNegPos.length > 0){
+        gExtraNoNegPos.splice(0, 1)
+    }
     for (var i = cellI - 1; i <= cellI + 1; i++) {
         if (i < 0 || i >= SIZE) continue
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
@@ -220,23 +190,24 @@ function expandShown(board, cellI, cellJ) {
             if(!cell.isShown){
                 cell.isShown = true;
                 gGame.shownCount++;
+                if (cell.minesAroundCount !== 0 ) {
+                    renderCell(elCellExp, cell.minesAroundCount);
+                } else {
+                    gExtraNoNegPos.push({
+                        i: i,
+                        j: j
+                    })
+                }
+
             }
-            if (cell.minesAroundCount !== 0) {
-                renderCell(elCellExp, cell.minesAroundCount);
-            } else {
-                gExtraNoNegPos.push({
-                    i: i,
-                    j: j
-                })
-            }
+
         }
+
     }
     while (gExtraNoNegPos.length > 0) {
-        gExtraNoNegPos.splice(0, 1)
         expandShown(gBoard, gExtraNoNegPos[0].i, gExtraNoNegPos[0].j);
     }
 }
-
 
 /////  Chose Game Level  ////////////
 
@@ -261,25 +232,8 @@ function renderCell(elcell, icon) {
 
 //////  Creates Random Positions Indexes  ////////
 
-
 function createRandomMinesIndexesArrray() {
     var indexesArray = createRandomOrderNumbersArray(gLevel.SIZE * gLevel.SIZE, gLevel.MINES);
     bubbleSort(indexesArray);
     return indexesArray
-}
-
-/////   Expose All Mines  /////
-
-function exposeMines() {
-    var SIZE = gLevel.SIZE;
-    for (var i = 0; i < SIZE; i++) {
-        for (var j = 0; j < SIZE; j++) {
-            if (gBoard[i][j].isMine) {
-                gBoard[i][j].isShown = true;
-                var elcell = document.querySelector(`.cell-${i}-${j}`);
-                renderCell(elcell, MINE)
-            }
-        }
-    }
-
 }

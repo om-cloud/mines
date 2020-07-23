@@ -77,6 +77,18 @@ function reAssignGlobalVariables() {
     
 }
 
+/////  Game ends when all mines are marked, and all the other cells are shown   /////
+
+function checkGameWon() {
+
+    if(gGame.shownCount + gGame.markedCount === gLevel.SIZE*gLevel.SIZE)
+    {
+   document.querySelector(".messageToUser").innerText = 'You Won 😁'
+   gGame.isOn = false;
+   stoptimer();
+   return true
+   }
+}
 
 /////  End Game  /////
 
@@ -84,3 +96,22 @@ function endGame(){
     gGame.isOn = false;
     stoptimer();
 }
+
+
+/////   Expose All Mines  /////
+
+function exposeMines() {
+    var SIZE = gLevel.SIZE;
+    for (var i = 0; i < SIZE; i++) {
+        for (var j = 0; j < SIZE; j++) {
+            if (gBoard[i][j].isMine) {
+                gBoard[i][j].isShown = true;
+                var elcell = document.querySelector(`.cell-${i}-${j}`);
+                renderCell(elcell, MINE)
+            }
+        }
+    }
+
+}
+
+
