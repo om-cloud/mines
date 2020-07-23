@@ -18,9 +18,8 @@ function timer(miliSeconds, seconds, miliSecondToShow, secondsToShow) {
         timer(miliSeconds, seconds, miliSecondToShow, secondsToShow);
     }, 1);
     miliSeconds += 1;
-    if (!gGame.isOn) {  ///  to add case of winning
+    if (!gGame.isOn && gGame.shownCount !==0) {  ///  to add case of winning
         stoptimer();
-        losingMessagesToUser();
         return
     }
     var timerToDom = createTimerStringToDom(miliSeconds, seconds, miliSecondToShow, secondsToShow);

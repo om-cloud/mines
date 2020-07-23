@@ -13,9 +13,10 @@ var gCounter = 1;
 var gGridLength = 4;
 var gPreviousPushedButton = null;
 var gTime = 0;
-var gFlagCounter=0;
-var gCounterXXXX=0;
 var gExtraNoNegPos=[];
+var gFirstI;
+var gFirstJ;
+var gElCell;
 
 
 /////  This is an object by which the board size is set /////
@@ -50,7 +51,6 @@ gBoard=buildBoard();
 spreadMines();
 iterateBoardToCountNegMines();
 renderBoard(gBoard);
-createRandomMinesIndexesArrray()
 }
 
 
@@ -73,8 +73,6 @@ function reAssignGlobalVariables() {
     gGame.isOn = true;
     gGame.shownCount = 0;
     gGame.markedCount = 0;
-
-    
 }
 
 /////  Game ends when all mines are marked, and all the other cells are shown   /////

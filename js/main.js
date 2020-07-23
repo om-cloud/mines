@@ -133,6 +133,15 @@ function addClassesAtChangeLevel(size) {
 ////  Called when a cell (td) is clicked ////
 
 function cellClicked(elCell, i, j) {
+    if(gGame.shownCount===0 && gBoard[i][j].isMine){  // make sure not to hit a mine at first click
+        gFirstI=i;
+        gFirstJ=j;
+        gGame.isOn = false;
+        reAssignGlobalVariables();
+        initGame();
+         var newElCell = document.querySelector(`.cell-${gFirstI}-${gFirstJ}`);
+         cellClicked(newElCell, gFirstI,gFirstJ)
+    }
     var cell = gBoard[i][j];
     if (!cell.isMarked && gGame.isOn && !cell.isShown) {
         if (!cell.isMine && cell.minesAroundCount > 0) {
