@@ -80,25 +80,27 @@ function playBombingEndGameByMinesNumber() {
 }
 
 
+/////  Innitiate and Update LocalStorage Best results  //////
+
 function showBestScores() {
     var bestResult;
     if (gLevel.SIZE === 4) {
         bestResult = localStorage.getItem('four');
         if (bestResult === undefined || bestResult > gLevel.secsPassed) {
             localStorage.setItem('four', gLevel.secsPassed);
-            document.querySelector('four').innerText === gGame.secsPassed;
+            document.querySelector('four').innerText === `Best Score : ${gGame.secsPassed}` ;
         }
     } else if (gLevel.SIZE === 8) {
         bestResult = localStorage.getItem('eight');
         if (bestResult === undefined || bestResult > gLevel.secsPassed) {
             localStorage.setItem('eight', gLevel.secsPassed);
-            document.querySelector('eight').innerText === gGame.secsPassed;
+            document.querySelector('eight').innerText === `Best Score : ${gGame.secsPassed}`;
         }
     } else if (gLevel.SIZE === 12) {
         bestResult = localStorage.getItem('twelve');
         if (bestResult === undefined || bestResult > gLevel.secsPassed) {
             localStorage.setItem('twelve', gLevel.secsPassed);
-            document.querySelector('twelve').innerText === gGame.secsPassed;
+            document.querySelector('twelve').innerText === `Best Score : ${gGame.secsPassed}`;
         }
     }
 }
