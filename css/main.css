@@ -98,8 +98,31 @@ img {
     height: 6vh;
     margin-right: 1.5vh;
     cursor: pointer;
+    
 }
 
+.animated-bulb{
+    animation: blink 2s linear infinite;
+}
+
+@keyframes blink {
+
+    40% {
+        opacity: 0.3;
+      }
+    55% {
+      opacity: 0.4;
+    }
+    70% {
+        opacity: 0.6;
+      }
+      85% {
+        opacity: 0.8;
+      }
+    100% {
+      opacity: 1;
+    }
+}
 .buttons {
     position: absolute;
     bottom: 530px;
@@ -185,6 +208,5 @@ p {
 }
 
 .hidden{
-    /* display: none; */
   visibility: hidden; 
 }

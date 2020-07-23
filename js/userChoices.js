@@ -2,25 +2,27 @@
 
 /////  Give Hint of Cell Neighbours  /////
 
-function giveHint() {
+function giveHint(elButton) {
     gIsHint = true;
+    elButton.classList.add('animated-bulb');
 }
 
+/////  Managing Exposing And Hiding Neighbours For 1 second  //////
 
 function exposeneighbours(elCell, cellI, cellJ) {
     if (!gHintsCounter > 0 || !gIsHint) return
-    //debugger
     var reveal = true;
     setTimeout(() => {
         reveal = false;
         toggleNegsContent(elCell, cellI, cellJ, reveal);
+        document.querySelector(`.hint${gHintsCounter}`).classList.add('hidden');
+        gHintsCounter--;
+        gIsHint=false;
     },1000)
     toggleNegsContent(elCell, cellI, cellJ, reveal);
-    document.querySelector(`.hint${gHintsCounter}`).classList.add('hidden');
-    console.log(document.querySelector(`.hint${gHintsCounter}`))
-    gHintsCounter--;
-    gIsHint = false;
 }
+
+/////  Rendering Hinted Cell Neighbours  /////
 
 function toggleNegsContent(elCell, cellI, cellJ, reveal) {
     var SIZE = gLevel.SIZE;
