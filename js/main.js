@@ -215,7 +215,7 @@ function cellMarked(elCell, i, j) {
             gBoard[i][j].isMarked = false;
             renderCell(elCell, EMPTY);
             gGame.markedCount--;
-        } else {
+        } else if(!gBoard[i][j].isShown){
             playMarkingAudio()
             gBoard[i][j].isMarked = true;
             renderCell(elCell, FLAG);

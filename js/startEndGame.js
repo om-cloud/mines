@@ -76,6 +76,7 @@ function reAssignGlobalVariables() {
     gGame.markedCount = 0;
     gIsHint = false;
     gHintsCounter = 3;
+    gLivesNumber = 3;
 }
 
 /////  Game ends when all mines are marked, and all the other cells are shown   /////
