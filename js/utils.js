@@ -97,6 +97,7 @@ function showBestScores() {
             }
         }
     } else if (gLevel.SIZE === 8) {
+        debugger
         if (localStorage.getItem('eight') === null)  {
             localStorage.setItem('eight', gGame.secsPassed);
             document.querySelector('.eight').innerText = `Best Time : ${gGame.secsPassed}`;

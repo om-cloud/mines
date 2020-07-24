@@ -109,7 +109,7 @@ function renderBoard(board) {
     elBoard.innerHTML = htmlStr;
 }
 
-/////  Determine Board Size  /////
+/////  Determine Board Size  And Allow Right Best Time Display /////
 
 function addClassesAtChangeLevel(size) {
     var className = ''
@@ -118,14 +118,43 @@ function addClassesAtChangeLevel(size) {
         className = ' grid-four '
         gLevel.SIZE = 4;
         gLevel.MINES = 2;
+        document.querySelector('.twelve').classList.add('non-display');
+        document.querySelector('.eight').classList.add('non-display');
+        document.querySelector('.four').classList.remove('non-display');
+        if (localStorage.getItem('four') !== null && 
+        localStorage.getItem('four') !== undefined) {
+        var bestTime = localStorage.getItem('four');
+            document.querySelector('.four').innerText = `Best Time : ${bestTime}`;
+    }
     } else if (size === 8) {
+        //debugger
         className = ' grid-eight '
         gLevel.SIZE = 8;
         gLevel.MINES = 12;
+        document.querySelector('.twelve').classList.add('non-display');
+        document.querySelector('.four').classList.add('non-display');
+        document.querySelector('.eight').classList.remove('non-display');
+        if (localStorage.getItem('eight') !== null && 
+        localStorage.getItem('eight') !== undefined){
+        var bestTime = localStorage.getItem('eight');
+        document.querySelector('.eight').innerText = `Best Time : ${bestTime}`;
+        } else{
+            document.querySelector('.eight').innerText = `Best Time : `;
+        }
     } else if (size === 12) {
         className = ' grid-twelve '
         gLevel.SIZE = 12;
         gLevel.MINES = 30;
+        document.querySelector('.eight').classList.add('non-display');
+        document.querySelector('.four').classList.add('non-display');
+        document.querySelector('.twelve').classList.remove('non-display');
+        if (localStorage.getItem('twelve') !== null && 
+        localStorage.getItem('twelve') !== undefined){
+        var bestTime = localStorage.getItem('twelve');
+        document.querySelector('.twelve').innerText = `Best Time : ${bestTime}`;
+        }else{
+            document.querySelector('.twelve').innerText = `Best Time : `;
+        }
     }
     return className
 }
