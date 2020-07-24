@@ -29,6 +29,7 @@ body {
     margin: 0 auto;
     position: relative;
     bottom: 5.2vh;
+    
 }
 
 th {
@@ -43,11 +44,14 @@ td {
     background-color: #fd8910;
     color: white;
     justify-content: center;
+    text-shadow: -1px 1px 1px rgba(167,166,180,0.72);
     align-content: center;
     text-align: center;
     font-family: inherit;
     cursor: pointer;
+
 }
+
 
 .hoverOverCell:hover {
     background-color: #f8ba33;
