@@ -83,24 +83,44 @@ function playBombingEndGameByMinesNumber() {
 /////  Innitiate and Update LocalStorage Best results  //////
 
 function showBestScores() {
-    var bestResult;
     if (gLevel.SIZE === 4) {
-        bestResult = localStorage.getItem('four');
-        if (bestResult === undefined || bestResult > gLevel.secsPassed) {
-            localStorage.setItem('four', gLevel.secsPassed);
-            document.querySelector('four').innerText === `Best Score : ${gGame.secsPassed}` ;
+        if (localStorage.getItem('four') === null)  {
+            localStorage.setItem('four', gGame.secsPassed);
+            document.querySelector('.four').innerText = `Best Time : ${gGame.secsPassed}`;
+        }else {
+            var bestTime = parseInt(localStorage.getItem('four'))
+            if(bestTime >  gGame.secsPassed){
+                localStorage.setItem('four', gGame.secsPassed);
+                document.querySelector('.four').innerText = `Best Time : ${gGame.secsPassed}`;
+            }else{
+                document.querySelector('.four').innerText = `Best Time : ${bestTime}`;
+            }
         }
     } else if (gLevel.SIZE === 8) {
-        bestResult = localStorage.getItem('eight');
-        if (bestResult === undefined || bestResult > gLevel.secsPassed) {
-            localStorage.setItem('eight', gLevel.secsPassed);
-            document.querySelector('eight').innerText === `Best Score : ${gGame.secsPassed}`;
+        if (localStorage.getItem('eight') === null)  {
+            localStorage.setItem('eight', gGame.secsPassed);
+            document.querySelector('.eight').innerText = `Best Time : ${gGame.secsPassed}`;
+        }else {
+            var bestTime = parseInt(localStorage.getItem('eight'))
+            if(bestTime >  gGame.secsPassed){
+                localStorage.setItem('eight', gGame.secsPassed);
+                document.querySelector('.eight').innerText = `Best Time : ${gGame.secsPassed}`;
+            }else{
+                document.querySelector('.eight').innerText = `Best Time : ${bestTime}`;
+            }
         }
-    } else if (gLevel.SIZE === 12) {
-        bestResult = localStorage.getItem('twelve');
-        if (bestResult === undefined || bestResult > gLevel.secsPassed) {
-            localStorage.setItem('twelve', gLevel.secsPassed);
-            document.querySelector('twelve').innerText === `Best Score : ${gGame.secsPassed}`;
+    } if (gLevel.SIZE === 12) {
+        if (localStorage.getItem('twelve') === null)  {
+            localStorage.setItem('twelve', gGame.secsPassed);
+            document.querySelector('.twelve').innerText = `Best Time : ${gGame.secsPassed}`;
+        }else {
+            var bestTime = parseInt(localStorage.getItem('twelve'))
+            if(bestTime >  gGame.secsPassed){
+                localStorage.setItem('twelve', gGame.secsPassed);
+                document.querySelector('.twelve').innerText = `Best Time : ${gGame.secsPassed}`;
+            }else{
+                document.querySelector('.twelve').innerText = `Best Time : ${bestTime}`;
+            }
         }
     }
 }

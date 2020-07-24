@@ -246,7 +246,7 @@ function chooseLevel(level, elButton) {
     initGame();
     startNewGame();
     endGame();
-    document.querySelector(".Timer").innerText = 'Timer : 000:000';
+    document.querySelector(".Timer").innerText = 'Timer : 000';
 }
 
 /////  Render Cell  /////
