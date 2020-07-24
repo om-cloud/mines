@@ -61,6 +61,7 @@ function startNewGame() {
     stoptimer();
     reAssignGlobalVariables();
     document.querySelector(".messageToUser").innerText = 'Find The Mines 😃'
+    document.querySelector('.life').innerText='Lives : 3'
     operateTimer();
     initGame();
 }
