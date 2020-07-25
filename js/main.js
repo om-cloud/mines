@@ -30,6 +30,9 @@ function buildBoard() {
 /////    Spread Random Mines  //////////
 
 function spreadMines() {
+    // if(gIsManualPositionedMines) {
+    //     return
+    // }
     var randomIndexesArray = createRandomMinesIndexesArrray();
     var SIZE = gLevel.SIZE;
     var counter = 0;
@@ -203,7 +206,6 @@ function cellClicked(elCell, i, j) {
             endGame();
         }
         checkGameWon();
-        gBoardChanges++;
         gBoardsArray.push(copyArrayToDifferentAddress());
     }
    
@@ -219,7 +221,6 @@ function cellMarked(elCell, i, j) {
             gBoard[i][j].isMarked = false;
             renderCell(elCell, EMPTY);
             gGame.markedCount--;
-            gBoardChanges++;
             gBoardsArray.push(copyArrayToDifferentAddress());
         } else if(!gBoard[i][j].isShown){
             playMarkingAudio()
@@ -227,7 +228,6 @@ function cellMarked(elCell, i, j) {
             renderCell(elCell, FLAG);
             gGame.markedCount++;
             checkGameWon();
-            gBoardChanges++;
             gBoardsArray.push(copyArrayToDifferentAddress());
         }
 }

@@ -22,7 +22,7 @@ var gHintsCounter = 3;
 var gLivesNumber = 3;
 var gSafeClicksCounter = 3;
 var gBoardsArray=[];
-var gBoardChanges = 0;
+//var gIsManualPositionedMines = false;
 
 
 /////  This is an object by which the board size is set /////
@@ -56,6 +56,7 @@ function initGame() {
     iterateBoardToCountNegMines();
     renderBoard(gBoard);
     gBoardsArray.push(copyArrayToDifferentAddress());
+    document.querySelector('.myButton3').innerText = 'Put Mines'
 }
 
 
@@ -67,13 +68,13 @@ function startNewGame() {
     document.querySelector(".messageToUser").innerText = 'Find The Mines '
     document.querySelector(".smiley").innerText = '😃'
     document.querySelector('.life').innerText='Lives : 3'
-    document.querySelector('.myButton3').innerText = '3 Safe Clicks'
     for(var i=0;i<3;i++){
         document.querySelector(`.hint${i+1}`).classList.remove('hidden');
         document.querySelector(`.hint${i+1}`).classList.remove('animated-bulb');
     }
     operateTimer();
     initGame();
+    document.querySelector('.myButton3').innerText = '3 Safe Clicks'
 }
 
 /////  reAssign Global Variables  /////
@@ -90,7 +91,7 @@ function reAssignGlobalVariables() {
     gLivesNumber = 3;
     gSafeClicksCounter = 3;
     gBoardsArray=[];
-    gBoardChanges = 0;
+    //gIsManualPositionedMines = false;
 }
 
 /////  Game ends when all mines are marked, and all the other cells are shown   /////
@@ -103,8 +104,7 @@ function checkGameWon() {
         document.querySelector(".smiley").innerText = '😁'
         playWinningAudio();
         showBestScores();
-        gGame.isOn = false;
-        stoptimer();
+        endGame();
         return true
     }
 }
@@ -115,6 +115,7 @@ function checkGameWon() {
 function endGame() {
     gGame.isOn = false;
     stoptimer();
+    document.querySelector('.myButton3').innerText = 'Put Mines'
 }
 
 

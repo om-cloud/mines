@@ -12,7 +12,8 @@ body {
     padding-top: 130px;
     padding-bottom: 20px;
     width: 320px;
-    max-height: 620px;
+    min-height: 490px;
+    height: 720;
     -moz-box-shadow: 0 0 27px rgb(180, 180, 180);
     -webkit-box-shadow: 0 0 27px rgb(180, 180, 180);
     box-shadow: 0 0 27px rgb(180, 180, 180);
@@ -28,7 +29,7 @@ body {
     background-color: #65666a;
     margin: 0 auto;
     position: relative;
-    bottom: 28px;
+    bottom: 32px;
     
 }
 
@@ -61,10 +62,10 @@ td {
 .grid-four {
     padding: 7.4px;
     font-size: 2.3em;
-    width: 57px;
-    height: 57px;
-    min-width: 57px;
-    min-height: 57px;
+    width: 56.5px;
+    height: 56.5px;
+    min-width: 56.5px;
+    min-height: 56.5px;
 }
 
 .grid-eight {
@@ -141,7 +142,7 @@ td {
 
 .buttons {
     position: absolute;
-    bottom: 583px;
+    top: 20px;
 }
 
 .myButton2 {
@@ -155,6 +156,7 @@ td {
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
+    text-align: center;
     font-family: 'Roboto';
     font-size: 0.85em;
     text-decoration: none;
@@ -208,8 +210,7 @@ td {
 }
 
 .signupRound{
-    margin-left:259px;
-    margin-bottom: 4px;
+    margin-left:150px;
     background-color: #bb5613;
     visibility: hidden;
 }
@@ -227,6 +228,9 @@ td {
     margin: 0 auto;
     margin-left: 13px;
     
+}
+.hidden{
+    visibility: hidden;
 }
 
 .smiley{
@@ -255,7 +259,8 @@ p {
 }
 
 .non-display {
-    display: none
+    display: none;
+    visibility:hidden;
 }
 
 .manual-positions{
@@ -264,9 +269,9 @@ p {
 }
 
 .undo{
-    position: absolute;
-    bottom:110px;
-    left:133px
+    margin-left:  140px;
+    margin-top: 10px;
+    background-color: #bb5613;
 }
 
 /* /////////  Form - SignUp ///////////////// */

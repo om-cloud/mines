@@ -84,22 +84,24 @@ function checkSafeClick() {
     var elCell = document.querySelector(`.cell-${i}-${j}`);
     var cell = gBoard[i][j];
     var reveal = true;
+    var exposeCell = cell.isShown ? false : true;
     setTimeout(() => {
         gSafeClicksCounter--;
         reveal = false;
-        toggleCellContent(cell, elCell, reveal);
+        exposeCell=true;
+        toggleCellContent(cell, elCell, reveal, exposeCell);
         document.querySelector('.myButton3').innerText = `${gSafeClicksCounter} Safe Clicks`
     }, 2000)
-    toggleCellContent(cell, elCell, reveal);
+    toggleCellContent(cell, elCell, reveal, exposeCell);
 }
 
 /////  Undo Button  /////
 /////  Each click on that button takes the game back by one step.  /////
 
 function undo() {
+    console.log('cc')
     if (!gGame.isOn) return
     if(gBoardsArray.length > 0){
-    //gBoardChanges--;
     gBoard=[]
     var indexToShow = gBoardsArray.length-2  
     gBoard=JSON.parse(JSON.stringify(gBoardsArray[indexToShow]))
@@ -134,5 +136,9 @@ function renderBoardDuringGame(){
 ///// (by clicking cells) and then plays.  /////
 
 function manuallyPositionMines() {
-
+    initGame();
+    startNewGame();
+    endGame();
+    document.querySelector(".Timer").innerText = 'Timer : 000';
+    gIsManualPositionedMines = true;
 }
