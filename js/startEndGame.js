@@ -22,11 +22,11 @@ var gHintsCounter = 3;
 var gLivesNumber = 3;
 var gSafeClicksCounter = 3;
 var gBoardsArray = [];
-var gShownCountsArray=[];
-var gMarkedCountArray=[];
+var gShownCountsArray = [];
+var gMarkedCountArray = [];
 var gIsManualPositionedMines = false;
 var isManualGame = false;
-var gManualGameMinesNumber=0;
+var gManualGameMinesNumber = 0;
 
 
 
@@ -36,7 +36,6 @@ var gLevel = {
     SIZE: 4,
     MINES: 2
 };
-
 
 /////  This is an object in which you can keep and update the current game  /////
 /////  state: isOn: Boolean, when true we let the user play shownCount:  /////
@@ -49,7 +48,6 @@ var gGame = {
     markedCount: 0,
     secsPassed: 0
 };
-
 
 //////////////////////////////  Main Functions  ////////////////////////////////
 
@@ -64,8 +62,8 @@ function initGame() {
     gShownCountsArray.push(gGame.shownCount);
     gMarkedCountArray.push(gGame.markedCount);
     document.querySelector('.myButton3').innerText = 'Hide Mines'
+   
 }
-
 
 /////  Start New Game  /////
 
@@ -81,16 +79,15 @@ function startNewGame() {
     }
 }
 
-
-
 /////  Start Common functions for Manual and random Game  /////
 
-function startCommonFunctionsGame(){
+function startCommonFunctionsGame() {
     stoptimer();
     reAssignGlobalVariables();
     document.querySelector(".messageToUser").innerText = 'Find The Mines '
     document.querySelector(".smiley").innerText = '😃'
     document.querySelector('.life').innerText = 'Lives : 3'
+    document.querySelector('.undo').innerText = 'Undo';
     for (var i = 0; i < 3; i++) {
         document.querySelector(`.hint${i+1}`).classList.remove('hidden');
         document.querySelector(`.hint${i+1}`).classList.remove('animated-bulb');
@@ -100,19 +97,20 @@ function startCommonFunctionsGame(){
 
 /////  Start New Manual Game  /////
 
-function startNewManualGame(){
+function startNewManualGame() {
     iterateBoardToCountNegMines();
     gBoardsArray.push(copyArrayToDifferentAddress());
     gShownCountsArray.push(gGame.shownCount);
     gMarkedCountArray.push(gGame.markedCount);
     document.querySelector('.myButton3').innerText = '3 Safe Clicks';
+    document.querySelector('.myButton3').classList.remove('pushedButton');
     gIsManualPositionedMines = false;
     isManualGame = true;
     var SIZE = gBoard.length;
     for (var i = 0; i < SIZE; i++) {
         for (var j = 0; j < SIZE; j++) {
-           var elCell= document.querySelector(`.cell-${i}-${j}`);
-           renderCell(elCell,EMPTY)
+            var elCell = document.querySelector(`.cell-${i}-${j}`);
+            renderCell(elCell, EMPTY)
         }
     }
 }
@@ -131,14 +129,14 @@ function reAssignGlobalVariables() {
     gLivesNumber = 3;
     gSafeClicksCounter = 3;
     gBoardsArray = [];
-    gShownCountsArray=[];
-    gMarkedCountArray=[];
+    gShownCountsArray = [];
+    gMarkedCountArray = [];
 }
 
 /////  Game ends when all mines are marked, and all the other cells are shown   /////
 
 function checkGameWon() {
-    var minesNumber = isManualGame ? gManualGameMinesNumber : gLevel.MINES ;
+    var minesNumber = isManualGame ? gManualGameMinesNumber : gLevel.MINES;
     var cellsNum = gLevel.SIZE * gLevel.SIZE;
     if (((gGame.shownCount + gGame.markedCount === cellsNum)) &&
         (gGame.markedCount === minesNumber - (3 - gLivesNumber))) {
@@ -151,16 +149,15 @@ function checkGameWon() {
     }
 }
 
-
 /////  End Game  /////
 
 function endGame() {
     gGame.isOn = false;
     stoptimer();
     document.querySelector('.myButton3').innerText = 'Hide Mines'
-    gManualGameMinesNumber=0;
+    document.querySelector('.undo').innerText = 'SignUp';
+    gManualGameMinesNumber = 0;
 }
-
 
 /////   Expose All Mines  /////
 

@@ -79,7 +79,6 @@ function setMinesNegsCount(board, cellI, cellJ) {
 function renderBoard(board) {
     var SIZE = gLevel.SIZE;
     var max = SIZE * SIZE;
-    //var numbersArray = createRandomOrderNumbersArray(1, max);
     var counter = 0;
     var className = '';
     var htmlStr = '';
@@ -88,17 +87,8 @@ function renderBoard(board) {
 
         for (var j = 0; j < SIZE; j++) {
             var className = '';
-            //var item = numbersArray[counter]
             className += `cell-${i}-${j} hoverOverCell ${addClassesAtChangeLevel(SIZE)}`;
             var elCell = board[i][j];
-            //  if (!elCell.isMarked && elCell.isShown && elCell.isMine) {
-            //     var domIcon = MINE
-            // } if (elCell.isMarked) {
-            //     var domIcon = FLAG
-            // } else if (!elCell.isMarked && ((!elCell.isMine && elCell.isShown) ||
-            //         (elCell.isMine && !elCell.isShown))) {
-            //     var domIcon = EMPTY
-            // }
             var domIcon = EMPTY
             htmlStr += `<td class="cell ${className}"
            onclick="cellClicked(this, ${i}, ${j});
@@ -113,7 +103,7 @@ function renderBoard(board) {
     elBoard.innerHTML = htmlStr;
 }
 
-/////  Determine Board Size  And Allow Right Best Time Display /////
+/////  Determine Board Size  And Display The Best Time  /////
 
 function addClassesAtChangeLevel(size) {
     var className = ''

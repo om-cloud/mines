@@ -54,7 +54,7 @@ function toggleCellContent(cell, elCell, reveal, exposeCell) {
         if (!cell.isShown && !cell.isMarked) {
             renderCell(elCell, EMPTY);
             elCell.style.backgroundColor = '#fd8910'
-        }else if(!cell.isShown && cell.isMarked){
+        } else if (!cell.isShown && cell.isMarked) {
             renderCell(elCell, FLAG);
             elCell.style.backgroundColor = '#fd8910'
         }
@@ -102,19 +102,18 @@ function checkSafeClick() {
 /////  Each click on that button takes the game back by one step.  /////
 
 function undo() {
-    console.log('cc')
     if (!gGame.isOn) return
     if (gBoardsArray.length > 0) {
         gBoard = []
         var indexForUndo = gBoardsArray.length - 2
-        gGame.shownCount=gShownCountsArray[indexForUndo];
-       gGame.markedCount=gMarkedCountArray[indexForUndo];
+        gGame.shownCount = gShownCountsArray[indexForUndo];
+        gGame.markedCount = gMarkedCountArray[indexForUndo];
         gBoard = JSON.parse(JSON.stringify(gBoardsArray[indexForUndo]))
         renderBoardDuringGame();
-        gBoardsArray.splice(indexForUndo + 1, 1)  // throw last board in the array And Last Global Vars
-        gShownCountsArray.splice(indexForUndo +1,1);
-        gShownCountsArray.splice(indexForUndo +1,1);
-        console.log(gGame)
+        gBoardsArray.splice(indexForUndo + 1, 1) // throw last board in the array And Last Global Vars
+        gShownCountsArray.splice(indexForUndo + 1, 1);
+        gShownCountsArray.splice(indexForUndo + 1, 1);
+        playUndoingAudio();
     }
 }
 
@@ -137,14 +136,13 @@ function renderBoardDuringGame() {
     }
 }
 
-
-
 /////  Manually positioned mines  /////
 /////  Create a “manually create” mode in which user first positions the mines  /////
 ///// (by clicking cells) and then plays.  /////
 
 function manuallyPositionMines() {
     if (gGame.isOn) return
+    document.querySelector('.myButton3').classList.add('pushedButton');
     endGame();
     document.querySelector(".Timer").innerText = 'Timer : 000';
     gBoard = buildBoard();
@@ -154,7 +152,6 @@ function manuallyPositionMines() {
     document.querySelector(".messageToUser").innerText = 'Manually Place Mines'
 
 }
-
 
 /////  manually Put Mine On A cell  /////
 

@@ -1,6 +1,5 @@
 'use strict'
 
-
 function createRandomOrderNumbersArray(sortedArrayLength, randomArrayLength) {
     var sortedArr = [];
     var randomArr = [];
@@ -15,7 +14,6 @@ function createRandomOrderNumbersArray(sortedArrayLength, randomArrayLength) {
     }
     return randomArr
 }
-
 
 function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
@@ -56,12 +54,17 @@ function playMarkingAudio() {
     sound.play()
 }
 
+function playUndoingAudio() {
+    var sound = new Audio()
+    sound.src = 'sound/undoing.wav'
+    sound.play()
+}
+
 function playWinningAudio() {
     var sound = new Audio()
     sound.src = 'sound/winning.mp3'
     sound.play()
 }
-
 
 function playBombingEndGameByMinesNumber() {
     for (var i = 0; i < gLevel.MINES; i++) {
@@ -78,7 +81,6 @@ function playBombingEndGameByMinesNumber() {
     playBomingAudio()
     playBomingAudio()
 }
-
 
 /////  Innitiate and Update LocalStorage Best results  //////
 
@@ -152,9 +154,3 @@ function copyArrayToDifferentAddress() {
     return arrayCopy
 }
 
-/////  Copy New gGame Object To A Diffrerent Address  /////
-
-// function copygGameObjectToDifferentaddress(){
-//     var shownCount = gGame.shownCount;
-//     var markedCount = gGame.markedCount;
-// }

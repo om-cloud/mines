@@ -1,10 +1,10 @@
 'use strict'
-function openSignUpForm(){
+
+function openSignUpForm() {
+    if(gGame.isOn) return
     document.querySelector('.container').classList.add('non-display');
     document.querySelector('.form').classList.remove('non-display');
-
 }
-
 
 function checkform() {
     //var errormessage = "";

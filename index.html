@@ -9,13 +9,10 @@
 </head>
 
 <body onload="initGame()" oncontextmenu="return false;">
-
     <div class="container ">
-
         <div class="buttons">
-            <!-- <span class="smiley smiley-button" onclick="startNewGame()"></span> -->
-            <button class="myButton2 myButton3 myButtonRed2" 
-            onclick="checkSafeClick();manuallyPositionMines()">3 Safe Clicks</button>
+            <button class="myButton2 myButton3 myButtonRed2" onclick="checkSafeClick();manuallyPositionMines()">3 Safe
+                Clicks</button>
             <button class="myButton2 myButtonRed2" onclick="chooseLevel(4, this)">4X4</button>
             <button class="myButton2 myButtonRed2" onclick="chooseLevel(8, this)">8X8</button>
             <button class="myButton2 myButtonRed2" onclick="chooseLevel(12, this)">12X12</button>
@@ -30,12 +27,9 @@
             <img class="hint hint3 " src="img/yellowbulb.png" onclick="giveHint(this)" alt="">
         </div>
         <table class="table">
-
             <tbody class="grid">
-
             </tbody>
         </table>
-
         <div>
             <div><span class="Timer">Timer : 000</span>
                 <span class="Timer four "> Best Time : </span>
@@ -47,19 +41,16 @@
                 <span class="messageToUser">Go Play !</span>
             </div>
             <div>
-                <button class="myButton2 myButtonRed2 undo" onclick="undo()">Undo</button>
+                <button class="myButton2 myButtonRed2 undo" onclick="undo();openSignUpForm()">SignUp</button>
             </div>
-
-
         </div>
-
     </div>
     <!-- <form class="form non-display"  onsubmit="checkform();"> -->
-    <!-- <form class="form non-display" onclick="checkform();">
+   <form class="form non-display" onclick="checkform();">
         <div class="allbox">
             <h1 class="sign-up">
                 Sign Up
-            </h1></br>
+            </h1>
             <span class="its-free">
                 It's free and only takes one minute
             </span></br></br>
@@ -87,11 +78,11 @@
                 </br>
                 <br>
                 <a> <input value=" Sign Up " class="button"></input> </a></br></br>
-                 <a> <input type="submit" value=" Sign Up " class="button"></input> </a></br></br> -->
-            <!-- </span>
+                 <!-- <a> <input type="submit" value=" Sign Up " class="button"></input> </a></br></br>  -->
+     </span>
         </div>
 
-    </form> --> 
+    </form>
     <script src="js/signup.js"> </script>
     <script src="js/startEndGame.js"></script>
     <script src="js/userChoices.js"></script>
