@@ -20,6 +20,7 @@ var gElCell;
 var gIsHint = false;
 var gHintsCounter = 3;
 var gLivesNumber = 3;
+var gSafeClicksCounter = 3;
 
 
 /////  This is an object by which the board size is set /////
@@ -60,8 +61,14 @@ function initGame() {
 function startNewGame() {
     stoptimer();
     reAssignGlobalVariables();
-    document.querySelector(".messageToUser").innerText = 'Find The Mines 😃'
+    document.querySelector(".messageToUser").innerText = 'Find The Mines '
+    document.querySelector(".smiley").innerText = '😃'
     document.querySelector('.life').innerText='Lives : 3'
+    document.querySelector('.myButton3').innerText = '3 Safe Clicks'
+    for(var i=0;i<3;i++){
+        document.querySelector(`.hint${i+1}`).classList.remove('hidden');
+        document.querySelector(`.hint${i+1}`).classList.remove('animated-bulb');
+    }
     operateTimer();
     initGame();
 }
@@ -78,6 +85,7 @@ function reAssignGlobalVariables() {
     gIsHint = false;
     gHintsCounter = 3;
     gLivesNumber = 3;
+    gSafeClicksCounter = 3;
 }
 
 /////  Game ends when all mines are marked, and all the other cells are shown   /////
@@ -86,7 +94,8 @@ function checkGameWon() {
     var cellsNum = gLevel.SIZE * gLevel.SIZE;
     if (((gGame.shownCount + gGame.markedCount  === cellsNum)) &&
         (gGame.markedCount === gLevel.MINES - (3 - gLivesNumber))) {
-        document.querySelector(".messageToUser").innerText = 'You Won 😁'
+        document.querySelector(".messageToUser").innerText = 'You Won '
+        document.querySelector(".smiley").innerText = '😁'
         playWinningAudio();
         showBestScores();
         gGame.isOn = false;

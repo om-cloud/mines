@@ -13,7 +13,8 @@
     <div class="container ">
 
         <div class="buttons">
-            <button class="myButton2 myButton3 myButtonRed2 " onclick="startNewGame()">Start Game</button>
+            <!-- <span class="smiley smiley-button" onclick="startNewGame()">😃</span> -->
+            <button class="myButton2 myButton3 myButtonRed2" onclick="checkSafeClick()">3 Safe Clicks</button>
             <button class="myButton2 myButtonRed2" onclick="chooseLevel(4, this)">4X4</button>
             <button class="myButton2 myButtonRed2" onclick="chooseLevel(8, this)">8X8</button>
             <button class="myButton2 myButtonRed2" onclick="chooseLevel(12, this)">12X12</button>
@@ -39,8 +40,10 @@
                 <span class="Timer eight non-display "> Best Time : </span> 
                 <span class="Timer twelve non-display "> Best Time : </span> 
             </p>
-            <p><span class="messageToUser">Go Play 😃</span> 
-                <button class="myButton2 myButtonRed2 signupRound"
+            <p>
+                <span class="smiley smiley-button" onclick="startNewGame()">😃</span> 
+                <span class="messageToUser">Go Play </span>
+                <button class="myButton2 myButtonRed2 signupRound non-display"
                 onclick="openSignUpForm()">SignUp</button>
                 <!-- <span class="life">
                     <img class="life life1 " src="img/SoldierSmile.png" alt="">

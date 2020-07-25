@@ -163,6 +163,7 @@ function addClassesAtChangeLevel(size) {
 
 function cellClicked(elCell, i, j) {
     if(gIsHint) return
+    if (!gGame.isOn) return
     if (gGame.shownCount === 0 && gBoard[i][j].isMine) { // make sure not to hit a mine at first click
         gFirstI = i; // to change to more efficient operation later !
         gFirstJ = j;
@@ -193,7 +194,8 @@ function cellClicked(elCell, i, j) {
         } 
         else if (cell.isMine && gLivesNumber === 1) {
             playBombingEndGameByMinesNumber()
-            document.querySelector(".messageToUser").innerText = 'You Lost 🤯'
+            document.querySelector(".messageToUser").innerText = 'You Lost '
+            document.querySelector(".smiley").innerText = '🤯'
             elCell.style.backgroundColor = 'rgb(255, 36, 36)'
             gLivesNumber--;
             document.querySelector('.life').innerText=`Lives : Dead`
