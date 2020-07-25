@@ -21,6 +21,8 @@ var gIsHint = false;
 var gHintsCounter = 3;
 var gLivesNumber = 3;
 var gSafeClicksCounter = 3;
+var gBoardsArray=[];
+var gBoardChanges = 0;
 
 
 /////  This is an object by which the board size is set /////
@@ -53,6 +55,7 @@ function initGame() {
     spreadMines();
     iterateBoardToCountNegMines();
     renderBoard(gBoard);
+    gBoardsArray.push(copyArrayToDifferentAddress());
 }
 
 
@@ -86,6 +89,8 @@ function reAssignGlobalVariables() {
     gHintsCounter = 3;
     gLivesNumber = 3;
     gSafeClicksCounter = 3;
+    gBoardsArray=[];
+    gBoardChanges = 0;
 }
 
 /////  Game ends when all mines are marked, and all the other cells are shown   /////

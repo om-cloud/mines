@@ -203,8 +203,10 @@ function cellClicked(elCell, i, j) {
             endGame();
         }
         checkGameWon();
+        gBoardChanges++;
+        gBoardsArray.push(copyArrayToDifferentAddress());
     }
-
+   
 }
 
 /////  Called on right click to mark a cell (suspected to be a mine) ////
@@ -217,12 +219,16 @@ function cellMarked(elCell, i, j) {
             gBoard[i][j].isMarked = false;
             renderCell(elCell, EMPTY);
             gGame.markedCount--;
+            gBoardChanges++;
+            gBoardsArray.push(copyArrayToDifferentAddress());
         } else if(!gBoard[i][j].isShown){
             playMarkingAudio()
             gBoard[i][j].isMarked = true;
             renderCell(elCell, FLAG);
             gGame.markedCount++;
             checkGameWon();
+            gBoardChanges++;
+            gBoardsArray.push(copyArrayToDifferentAddress());
         }
 }
 

@@ -34,29 +34,37 @@
 
             </tbody>
         </table>
+
         <div>
-            <p><span class="Timer">Timer : 000</span>
-                <span class="Timer four "> Best Time : </span> 
-                <span class="Timer eight non-display "> Best Time : </span> 
-                <span class="Timer twelve non-display "> Best Time : </span> 
-            </p>
-            <p>
-                <span class="smiley smiley-button" onclick="startNewGame()">😃</span> 
-                <span class="messageToUser">Go Play </span>
-                <button class="myButton2 myButtonRed2 signupRound non-display"
+            <div>
+                <button class="myButton2 myButtonRed2 myButton3 manual-positions " onclick="manuallyPositionMines()">Manual Positions</button>
+                <button class="myButton2 myButtonRed2 undo" onclick="undo()">Undo</button>
+                <button class="myButton2 myButtonRed2 signupRound "
                 onclick="openSignUpForm()">SignUp</button>
+
+            </div>
+            <div><span class="Timer">Timer : 000</span>
+                <span class="Timer four "> Best Time : </span>
+                <span class="Timer eight non-display "> Best Time : </span>
+                <span class="Timer twelve non-display "> Best Time : </span>
+            </div>
+            <div>
+                <span class="smiley smiley-button" onclick="startNewGame()">😃</span>
+                <span class="messageToUser">Go Play </span>
+            
                 <!-- <span class="life">
                     <img class="life life1 " src="img/SoldierSmile.png" alt="">
                     <img class="life life2 " src="img/SoldierSmile.png" alt="">
                     <img class="life life3 " src="img/SoldierSmile.png" alt="">
                 </span> -->
-            </p>
+            </div>
+
 
         </div>
-       
+
     </div>
     <!-- <form class="form non-display"  onsubmit="checkform();"> -->
-        <form class="form non-display"  onclick="checkform();">
+    <form class="form non-display" onclick="checkform();">
         <div class="allbox">
             <h1 class="sign-up">
                 Sign Up
@@ -87,7 +95,7 @@
             <span>
                 </br>
                 <br>
-                <a> <input  value=" Sign Up " class="button"></input> </a></br></br>
+                <a> <input value=" Sign Up " class="button"></input> </a></br></br>
                 <!-- <a> <input type="submit" value=" Sign Up " class="button"></input> </a></br></br> -->
             </span>
         </div>

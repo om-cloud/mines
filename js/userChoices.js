@@ -32,8 +32,9 @@ function toggleNegsContent(elCell, cellI, cellJ, reveal) {
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
             if (j < 0 || j >= SIZE) continue
             var cell = gBoard[i][j]
-            var elCell = document.querySelector(`.cell-${i}-${j}`)
-            toggleCellContent(cell, elCell, reveal);
+            var elCell = document.querySelector(`.cell-${i}-${j}`);
+            var exposeCell = cell.isShown ? false : true;  // only show cell if it is hidden in the hint/safe click
+            toggleCellContent(cell, elCell, reveal, exposeCell);
         }
     }
 
@@ -41,12 +42,12 @@ function toggleNegsContent(elCell, cellI, cellJ, reveal) {
 
 /////  Expose Cell Content  /////
 
-function toggleCellContent(cell, elCell, reveal) {
+function toggleCellContent(cell, elCell, reveal, exposeCell) {
     if (reveal) {
         elCell.style.backgroundColor = 'rgb(101, 137, 172)'
-        if (cell.isMine && !cell.isShown) {
+        if (cell.isMine && exposeCell) {
             renderCell(elCell, MINE)
-        } else if (!cell.isMine && cell.minesAroundCount > 0 && !cell.isShown) {
+        } else if (!cell.isMine && cell.minesAroundCount > 0 && exposeCell) {
             renderCell(elCell, cell.minesAroundCount)
         }
     } else {
@@ -97,8 +98,36 @@ function checkSafeClick() {
 
 function undo() {
     if (!gGame.isOn) return
-
+    if(gBoardsArray.length > 0){
+    //gBoardChanges--;
+    gBoard=[]
+    var indexToShow = gBoardsArray.length-2  
+    gBoard=JSON.parse(JSON.stringify(gBoardsArray[indexToShow]))
+    renderBoardDuringGame();
+    gBoardsArray.splice(indexToShow+1,1)  // throw last board in the array
+    }
 }
+
+/////  Render Board  During Game /////
+
+function renderBoardDuringGame(){
+    var SIZE = gBoard.length;
+    for (var i = 0; i < SIZE; i++) {
+        for (var j = 0; j < SIZE; j++) {
+            var reveal;
+            var cell = gBoard[i][j]
+            var elCell = document.querySelector(`.cell-${i}-${j}`);
+            cell.isShown === true ? reveal =true : reveal = false;
+            toggleCellContent(cell, elCell, reveal, true);
+            if(cell.isMarked){
+                renderCell(elCell, FLAG);
+            
+            }
+        }
+    }
+}
+
+
 
 /////  Manually positioned mines  /////
 /////  Create a “manually create” mode in which user first positions the mines  /////

@@ -141,7 +141,7 @@ td {
 
 .buttons {
     position: absolute;
-    bottom: 573px;
+    bottom: 583px;
 }
 
 .myButton2 {
@@ -208,8 +208,10 @@ td {
 }
 
 .signupRound{
-    margin-left:5vh;
+    margin-left:259px;
+    margin-bottom: 4px;
     background-color: #bb5613;
+    visibility: hidden;
 }
 
 /* ////  Timer  -  Extras ///// */
@@ -256,7 +258,16 @@ p {
     display: none
 }
 
+.manual-positions{
+    position: absolute;
+    bottom:110px;
+}
 
+.undo{
+    position: absolute;
+    bottom:110px;
+    left:133px
+}
 
 /* /////////  Form - SignUp ///////////////// */
 

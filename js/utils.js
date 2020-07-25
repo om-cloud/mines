@@ -84,44 +84,71 @@ function playBombingEndGameByMinesNumber() {
 
 function showBestScores() {
     if (gLevel.SIZE === 4) {
-        if (localStorage.getItem('four') === null)  {
+        if (localStorage.getItem('four') === null) {
             localStorage.setItem('four', gGame.secsPassed);
             document.querySelector('.four').innerText = `Best Time : ${gGame.secsPassed}`;
-        }else {
+        } else {
             var bestTime = parseInt(localStorage.getItem('four'))
-            if(bestTime >  gGame.secsPassed){
+            if (bestTime > gGame.secsPassed) {
                 localStorage.setItem('four', gGame.secsPassed);
                 document.querySelector('.four').innerText = `Best Time : ${gGame.secsPassed}`;
-            }else{
+            } else {
                 document.querySelector('.four').innerText = `Best Time : ${bestTime}`;
             }
         }
     } else if (gLevel.SIZE === 8) {
         debugger
-        if (localStorage.getItem('eight') === null)  {
+        if (localStorage.getItem('eight') === null) {
             localStorage.setItem('eight', gGame.secsPassed);
             document.querySelector('.eight').innerText = `Best Time : ${gGame.secsPassed}`;
-        }else {
+        } else {
             var bestTime = parseInt(localStorage.getItem('eight'))
-            if(bestTime >  gGame.secsPassed){
+            if (bestTime > gGame.secsPassed) {
                 localStorage.setItem('eight', gGame.secsPassed);
                 document.querySelector('.eight').innerText = `Best Time : ${gGame.secsPassed}`;
-            }else{
+            } else {
                 document.querySelector('.eight').innerText = `Best Time : ${bestTime}`;
             }
         }
-    } if (gLevel.SIZE === 12) {
-        if (localStorage.getItem('twelve') === null)  {
+    }
+    if (gLevel.SIZE === 12) {
+        if (localStorage.getItem('twelve') === null) {
             localStorage.setItem('twelve', gGame.secsPassed);
             document.querySelector('.twelve').innerText = `Best Time : ${gGame.secsPassed}`;
-        }else {
+        } else {
             var bestTime = parseInt(localStorage.getItem('twelve'))
-            if(bestTime >  gGame.secsPassed){
+            if (bestTime > gGame.secsPassed) {
                 localStorage.setItem('twelve', gGame.secsPassed);
                 document.querySelector('.twelve').innerText = `Best Time : ${gGame.secsPassed}`;
-            }else{
+            } else {
                 document.querySelector('.twelve').innerText = `Best Time : ${bestTime}`;
             }
         }
     }
 }
+
+/////  Copy New Arrays of Boards To A Diffrerent Address  /////
+
+function copyArrayToDifferentAddress() {
+    var SIZE = gBoard.length;
+    var arrayCopy = []
+    for (var i = 0; i < SIZE; i++) {
+        var row = []
+        for (var j = 0; j < SIZE; j++) {
+            var minesAroundCount = gBoard[i][j].minesAroundCount;
+            var isShown = gBoard[i][j].isShown;
+            var isMine = gBoard[i][j].isMine
+            var isMarked = gBoard[i][j].isMarked
+            var objCopy = {
+                minesAroundCount: minesAroundCount,
+                isShown: isShown,
+                isMine: isMine,
+                isMarked: isMarked
+            }
+            row.push(objCopy)
+        }
+        arrayCopy.push(row);
+    }
+    return arrayCopy
+}
+
