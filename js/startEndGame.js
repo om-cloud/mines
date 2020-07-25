@@ -21,8 +21,10 @@ var gIsHint = false;
 var gHintsCounter = 3;
 var gLivesNumber = 3;
 var gSafeClicksCounter = 3;
-var gBoardsArray=[];
-//var gIsManualPositionedMines = false;
+var gBoardsArray = [];
+var gIsManualPositionedMines = false;
+var isManualGame = false;
+var gManualGameMinesNumber=0;
 
 
 /////  This is an object by which the board size is set /////
@@ -63,18 +65,49 @@ function initGame() {
 /////  Start New Game  /////
 
 function startNewGame() {
+    startCommonFunctionsGame();
+    if (!gIsManualPositionedMines) {
+        initGame();
+        document.querySelector('.myButton3').innerText = '3 Safe Clicks';
+        gIsManualPositionedMines = false;
+        isManualGame = false;
+    } else {
+        startNewManualGame();
+    }
+}
+
+
+
+/////  Start Common functions for Manual and random Game  /////
+
+function startCommonFunctionsGame(){
     stoptimer();
     reAssignGlobalVariables();
     document.querySelector(".messageToUser").innerText = 'Find The Mines '
     document.querySelector(".smiley").innerText = '😃'
-    document.querySelector('.life').innerText='Lives : 3'
-    for(var i=0;i<3;i++){
+    document.querySelector('.life').innerText = 'Lives : 3'
+    for (var i = 0; i < 3; i++) {
         document.querySelector(`.hint${i+1}`).classList.remove('hidden');
         document.querySelector(`.hint${i+1}`).classList.remove('animated-bulb');
     }
     operateTimer();
-    initGame();
-    document.querySelector('.myButton3').innerText = '3 Safe Clicks'
+}
+
+/////  Start New Manual Game  /////
+
+function startNewManualGame(){
+    iterateBoardToCountNegMines();
+    gBoardsArray.push(copyArrayToDifferentAddress());
+    document.querySelector('.myButton3').innerText = '3 Safe Clicks';
+    gIsManualPositionedMines = false;
+    isManualGame = true;
+    var SIZE = gBoard.length;
+    for (var i = 0; i < SIZE; i++) {
+        for (var j = 0; j < SIZE; j++) {
+           var elCell= document.querySelector(`.cell-${i}-${j}`);
+           renderCell(elCell,EMPTY)
+        }
+    }
 }
 
 /////  reAssign Global Variables  /////
@@ -82,7 +115,7 @@ function startNewGame() {
 function reAssignGlobalVariables() {
     gTime = 0;
     gCounter = 1;
-    gGame.secsPassed=0;
+    gGame.secsPassed = 0;
     gGame.isOn = true;
     gGame.shownCount = 0;
     gGame.markedCount = 0;
@@ -90,16 +123,16 @@ function reAssignGlobalVariables() {
     gHintsCounter = 3;
     gLivesNumber = 3;
     gSafeClicksCounter = 3;
-    gBoardsArray=[];
-    //gIsManualPositionedMines = false;
+    gBoardsArray = [];
 }
 
 /////  Game ends when all mines are marked, and all the other cells are shown   /////
 
 function checkGameWon() {
+    var minesNumber = isManualGame ? gManualGameMinesNumber : gLevel.MINES ;
     var cellsNum = gLevel.SIZE * gLevel.SIZE;
-    if (((gGame.shownCount + gGame.markedCount  === cellsNum)) &&
-        (gGame.markedCount === gLevel.MINES - (3 - gLivesNumber))) {
+    if (((gGame.shownCount + gGame.markedCount === cellsNum)) &&
+        (gGame.markedCount === minesNumber - (3 - gLivesNumber))) {
         document.querySelector(".messageToUser").innerText = 'You Won '
         document.querySelector(".smiley").innerText = '😁'
         playWinningAudio();
@@ -116,6 +149,7 @@ function endGame() {
     gGame.isOn = false;
     stoptimer();
     document.querySelector('.myButton3').innerText = 'Put Mines'
+    gManualGameMinesNumber=0;
 }
 
 

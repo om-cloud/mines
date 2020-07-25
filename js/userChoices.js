@@ -33,7 +33,7 @@ function toggleNegsContent(elCell, cellI, cellJ, reveal) {
             if (j < 0 || j >= SIZE) continue
             var cell = gBoard[i][j]
             var elCell = document.querySelector(`.cell-${i}-${j}`);
-            var exposeCell = cell.isShown ? false : true;  // only show cell if it is hidden in the hint/safe click
+            var exposeCell = cell.isShown ? false : true; // only show cell if it is hidden in the hint/safe click
             toggleCellContent(cell, elCell, reveal, exposeCell);
         }
     }
@@ -51,8 +51,11 @@ function toggleCellContent(cell, elCell, reveal, exposeCell) {
             renderCell(elCell, cell.minesAroundCount)
         }
     } else {
-        if (!cell.isShown) {
+        if (!cell.isShown && !cell.isMarked) {
             renderCell(elCell, EMPTY);
+            elCell.style.backgroundColor = '#fd8910'
+        }else if(!cell.isShown && cell.isMarked){
+            renderCell(elCell, FLAG);
             elCell.style.backgroundColor = '#fd8910'
         }
     }
@@ -88,7 +91,7 @@ function checkSafeClick() {
     setTimeout(() => {
         gSafeClicksCounter--;
         reveal = false;
-        exposeCell=true;
+        exposeCell = true;
         toggleCellContent(cell, elCell, reveal, exposeCell);
         document.querySelector('.myButton3').innerText = `${gSafeClicksCounter} Safe Clicks`
     }, 2000)
@@ -101,29 +104,29 @@ function checkSafeClick() {
 function undo() {
     console.log('cc')
     if (!gGame.isOn) return
-    if(gBoardsArray.length > 0){
-    gBoard=[]
-    var indexToShow = gBoardsArray.length-2  
-    gBoard=JSON.parse(JSON.stringify(gBoardsArray[indexToShow]))
-    renderBoardDuringGame();
-    gBoardsArray.splice(indexToShow+1,1)  // throw last board in the array
+    if (gBoardsArray.length > 0) {
+        gBoard = []
+        var indexToShow = gBoardsArray.length - 2
+        gBoard = JSON.parse(JSON.stringify(gBoardsArray[indexToShow]))
+        renderBoardDuringGame();
+        gBoardsArray.splice(indexToShow + 1, 1) // throw last board in the array
     }
 }
 
 /////  Render Board  During Game /////
 
-function renderBoardDuringGame(){
+function renderBoardDuringGame() {
     var SIZE = gBoard.length;
     for (var i = 0; i < SIZE; i++) {
         for (var j = 0; j < SIZE; j++) {
             var reveal;
             var cell = gBoard[i][j]
             var elCell = document.querySelector(`.cell-${i}-${j}`);
-            cell.isShown === true ? reveal =true : reveal = false;
+            cell.isShown === true ? reveal = true : reveal = false;
             toggleCellContent(cell, elCell, reveal, true);
-            if(cell.isMarked){
+            if (cell.isMarked) {
                 renderCell(elCell, FLAG);
-            
+
             }
         }
     }
@@ -136,9 +139,24 @@ function renderBoardDuringGame(){
 ///// (by clicking cells) and then plays.  /////
 
 function manuallyPositionMines() {
-    initGame();
-    startNewGame();
+    if (gGame.isOn) return
     endGame();
     document.querySelector(".Timer").innerText = 'Timer : 000';
+    gBoard = buildBoard();
+    renderBoard(gBoard);
     gIsManualPositionedMines = true;
+    document.querySelector(".smiley").innerText = '😃'
+    document.querySelector(".messageToUser").innerText = 'Manually Place Mines'
+
+}
+
+
+
+/////  manually Put Mine On A cell  /////
+function putMine(elCell, i, j) {
+    if (!gIsManualPositionedMines) return
+    gBoard[i][j].isMine = true;
+    playMarkingAudio();
+    gManualGameMinesNumber++;
+    renderCell(elCell, MINE);
 }

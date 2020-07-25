@@ -101,10 +101,11 @@ function renderBoard(board) {
             // }
             var domIcon = EMPTY
             htmlStr += `<td class="cell ${className}"
-           onclick="cellClicked(this, ${i}, ${j});exposeneighbours(this, ${i}, ${j})"
-                oncontextmenu="cellMarked(this, ${i},${j})"
-                >${domIcon}</td>`;
-            //counter++;
+           onclick="cellClicked(this, ${i}, ${j});
+           exposeneighbours(this, ${i}, ${j});
+           putMine(this,${i}, ${j})"
+            oncontextmenu="cellMarked(this, ${i},${j})"
+               style="backgroundColor :#fd8910" >${domIcon}</td>`;
         }
         htmlStr += `</tr>`;
     }
@@ -124,11 +125,11 @@ function addClassesAtChangeLevel(size) {
         document.querySelector('.twelve').classList.add('non-display');
         document.querySelector('.eight').classList.add('non-display');
         document.querySelector('.four').classList.remove('non-display');
-        if (localStorage.getItem('four') !== null && 
-        localStorage.getItem('four') !== undefined) {
-        var bestTime = localStorage.getItem('four');
+        if (localStorage.getItem('four') !== null &&
+            localStorage.getItem('four') !== undefined) {
+            var bestTime = localStorage.getItem('four');
             document.querySelector('.four').innerText = `Best Time : ${bestTime}`;
-    }
+        }
     } else if (size === 8) {
         //debugger
         className = ' grid-eight '
@@ -137,11 +138,11 @@ function addClassesAtChangeLevel(size) {
         document.querySelector('.twelve').classList.add('non-display');
         document.querySelector('.four').classList.add('non-display');
         document.querySelector('.eight').classList.remove('non-display');
-        if (localStorage.getItem('eight') !== null && 
-        localStorage.getItem('eight') !== undefined){
-        var bestTime = localStorage.getItem('eight');
-        document.querySelector('.eight').innerText = `Best Time : ${bestTime}`;
-        } else{
+        if (localStorage.getItem('eight') !== null &&
+            localStorage.getItem('eight') !== undefined) {
+            var bestTime = localStorage.getItem('eight');
+            document.querySelector('.eight').innerText = `Best Time : ${bestTime}`;
+        } else {
             document.querySelector('.eight').innerText = `Best Time : `;
         }
     } else if (size === 12) {
@@ -151,11 +152,11 @@ function addClassesAtChangeLevel(size) {
         document.querySelector('.eight').classList.add('non-display');
         document.querySelector('.four').classList.add('non-display');
         document.querySelector('.twelve').classList.remove('non-display');
-        if (localStorage.getItem('twelve') !== null && 
-        localStorage.getItem('twelve') !== undefined){
-        var bestTime = localStorage.getItem('twelve');
-        document.querySelector('.twelve').innerText = `Best Time : ${bestTime}`;
-        }else{
+        if (localStorage.getItem('twelve') !== null &&
+            localStorage.getItem('twelve') !== undefined) {
+            var bestTime = localStorage.getItem('twelve');
+            document.querySelector('.twelve').innerText = `Best Time : ${bestTime}`;
+        } else {
             document.querySelector('.twelve').innerText = `Best Time : `;
         }
     }
@@ -165,20 +166,22 @@ function addClassesAtChangeLevel(size) {
 ////  Called when a cell (td) is clicked ////
 
 function cellClicked(elCell, i, j) {
-    if(gIsHint) return
+    if (gIsHint) return
     if (!gGame.isOn) return
-    if (gGame.shownCount === 0 && gBoard[i][j].isMine) { // make sure not to hit a mine at first click
-        gFirstI = i; // to change to more efficient operation later !
-        gFirstJ = j;
-        gGame.isOn = false;
-        reAssignGlobalVariables();
-        initGame();
-        var newElCell = document.querySelector(`.cell-${gFirstI}-${gFirstJ}`);
-        cellClicked(newElCell, gFirstI, gFirstJ)
+    if (!isManualGame) {
+        if (gGame.shownCount === 0 && gBoard[i][j].isMine) { // make sure not to hit a mine at first click
+            gFirstI = i; // to change to more efficient operation later !
+            gFirstJ = j;
+            gGame.isOn = false;
+            reAssignGlobalVariables();
+            initGame();
+            var newElCell = document.querySelector(`.cell-${gFirstI}-${gFirstJ}`);
+            cellClicked(newElCell, gFirstI, gFirstJ)
+        }
     }
     var cell = gBoard[i][j];
     if (!cell.isMarked && gGame.isOn && !cell.isShown) {
-            playClickingAudio();
+        playClickingAudio();
         if (!cell.isMine && cell.minesAroundCount > 0) {
             cell.isShown = true;
             gGame.shownCount++;
@@ -186,29 +189,28 @@ function cellClicked(elCell, i, j) {
             renderCell(elCell, cell.minesAroundCount)
         } else if (!cell.isMine && cell.minesAroundCount === 0) {
             expandShown(gBoard, i, j);
-        } else if(gLivesNumber === 2 || gLivesNumber === 3){
+        } else if (gLivesNumber === 2 || gLivesNumber === 3) {
             playBomingAudio()
             gLivesNumber--;
-            document.querySelector('.life').innerText=`Lives : Only ${gLivesNumber} !`
+            document.querySelector('.life').innerText = `Lives : Only ${gLivesNumber} !`
             cell.isShown = true;
             gGame.shownCount++;
             elCell.style.backgroundColor = 'rgb(101, 137, 172)'
             renderCell(elCell, MINE)
-        } 
-        else if (cell.isMine && gLivesNumber === 1) {
+        } else if (cell.isMine && gLivesNumber === 1) {
             playBombingEndGameByMinesNumber()
             document.querySelector(".messageToUser").innerText = 'You Lost '
             document.querySelector(".smiley").innerText = '🤯'
             elCell.style.backgroundColor = 'rgb(255, 36, 36)'
             gLivesNumber--;
-            document.querySelector('.life').innerText=`Lives : Dead`
+            document.querySelector('.life').innerText = `Lives : Dead`
             exposeMines()
             endGame();
         }
         checkGameWon();
         gBoardsArray.push(copyArrayToDifferentAddress());
     }
-   
+
 }
 
 /////  Called on right click to mark a cell (suspected to be a mine) ////
@@ -217,19 +219,19 @@ function cellClicked(elCell, i, j) {
 function cellMarked(elCell, i, j) {
     if (gGame.isOn)
         if (gBoard[i][j].isMarked) {
-            playMarkingAudio()
+            playMarkingAudio();
             gBoard[i][j].isMarked = false;
             renderCell(elCell, EMPTY);
             gGame.markedCount--;
             gBoardsArray.push(copyArrayToDifferentAddress());
-        } else if(!gBoard[i][j].isShown){
-            playMarkingAudio()
-            gBoard[i][j].isMarked = true;
-            renderCell(elCell, FLAG);
-            gGame.markedCount++;
-            checkGameWon();
-            gBoardsArray.push(copyArrayToDifferentAddress());
-        }
+        } else if (!gBoard[i][j].isShown) {
+        playMarkingAudio()
+        gBoard[i][j].isMarked = true;
+        renderCell(elCell, FLAG);
+        gGame.markedCount++;
+        checkGameWon();
+        gBoardsArray.push(copyArrayToDifferentAddress());
+    }
 }
 
 /////  When user clicks a cell with no mines around, we need to open not only  /////
