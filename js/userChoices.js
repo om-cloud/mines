@@ -5,6 +5,7 @@
 function giveHint(elButton) {
     gIsHint = true;
     elButton.classList.add('animated-bulb');
+    gElButton=elButton;
 }
 
 /////  Managing Exposing And Hiding Neighbours For 1 second  //////
@@ -16,7 +17,8 @@ function exposeneighbours(elCell, cellI, cellJ) {
     setTimeout(() => {
         reveal = false;
         toggleNegsContent(elCell, cellI, cellJ, reveal);
-        document.querySelector(`.hint${gHintsCounter}`).classList.add('hidden');
+        gElButton.classList.add('hidden');
+        gElButton.classList.remove('animated-bulb');
         gHintsCounter--;
         gIsHint = false;
     }, 1000)

@@ -27,6 +27,7 @@ var gMarkedCountArray = [];
 var gIsManualPositionedMines = false;
 var isManualGame = false;
 var gManualGameMinesNumber = 0;
+var gElButton =null;
 
 
 
@@ -131,6 +132,7 @@ function reAssignGlobalVariables() {
     gBoardsArray = [];
     gShownCountsArray = [];
     gMarkedCountArray = [];
+    gElButton =null;
 }
 
 /////  Game ends when all mines are marked, and all the other cells are shown   /////
