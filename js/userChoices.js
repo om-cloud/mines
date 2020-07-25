@@ -106,10 +106,15 @@ function undo() {
     if (!gGame.isOn) return
     if (gBoardsArray.length > 0) {
         gBoard = []
-        var indexToShow = gBoardsArray.length - 2
-        gBoard = JSON.parse(JSON.stringify(gBoardsArray[indexToShow]))
+        var indexForUndo = gBoardsArray.length - 2
+        gGame.shownCount=gShownCountsArray[indexForUndo];
+       gGame.markedCount=gMarkedCountArray[indexForUndo];
+        gBoard = JSON.parse(JSON.stringify(gBoardsArray[indexForUndo]))
         renderBoardDuringGame();
-        gBoardsArray.splice(indexToShow + 1, 1) // throw last board in the array
+        gBoardsArray.splice(indexForUndo + 1, 1)  // throw last board in the array And Last Global Vars
+        gShownCountsArray.splice(indexForUndo +1,1);
+        gShownCountsArray.splice(indexForUndo +1,1);
+        console.log(gGame)
     }
 }
 
@@ -151,8 +156,8 @@ function manuallyPositionMines() {
 }
 
 
-
 /////  manually Put Mine On A cell  /////
+
 function putMine(elCell, i, j) {
     if (!gIsManualPositionedMines) return
     gBoard[i][j].isMine = true;

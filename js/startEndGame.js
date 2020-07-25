@@ -22,9 +22,12 @@ var gHintsCounter = 3;
 var gLivesNumber = 3;
 var gSafeClicksCounter = 3;
 var gBoardsArray = [];
+var gShownCountsArray=[];
+var gMarkedCountArray=[];
 var gIsManualPositionedMines = false;
 var isManualGame = false;
 var gManualGameMinesNumber=0;
+
 
 
 /////  This is an object by which the board size is set /////
@@ -58,7 +61,9 @@ function initGame() {
     iterateBoardToCountNegMines();
     renderBoard(gBoard);
     gBoardsArray.push(copyArrayToDifferentAddress());
-    document.querySelector('.myButton3').innerText = 'Put Mines'
+    gShownCountsArray.push(gGame.shownCount);
+    gMarkedCountArray.push(gGame.markedCount);
+    document.querySelector('.myButton3').innerText = 'Hide Mines'
 }
 
 
@@ -98,6 +103,8 @@ function startCommonFunctionsGame(){
 function startNewManualGame(){
     iterateBoardToCountNegMines();
     gBoardsArray.push(copyArrayToDifferentAddress());
+    gShownCountsArray.push(gGame.shownCount);
+    gMarkedCountArray.push(gGame.markedCount);
     document.querySelector('.myButton3').innerText = '3 Safe Clicks';
     gIsManualPositionedMines = false;
     isManualGame = true;
@@ -124,6 +131,8 @@ function reAssignGlobalVariables() {
     gLivesNumber = 3;
     gSafeClicksCounter = 3;
     gBoardsArray = [];
+    gShownCountsArray=[];
+    gMarkedCountArray=[];
 }
 
 /////  Game ends when all mines are marked, and all the other cells are shown   /////
@@ -133,7 +142,7 @@ function checkGameWon() {
     var cellsNum = gLevel.SIZE * gLevel.SIZE;
     if (((gGame.shownCount + gGame.markedCount === cellsNum)) &&
         (gGame.markedCount === minesNumber - (3 - gLivesNumber))) {
-        document.querySelector(".messageToUser").innerText = 'You Won '
+        document.querySelector(".messageToUser").innerText = 'You Won !'
         document.querySelector(".smiley").innerText = '😁'
         playWinningAudio();
         showBestScores();
@@ -148,7 +157,7 @@ function checkGameWon() {
 function endGame() {
     gGame.isOn = false;
     stoptimer();
-    document.querySelector('.myButton3').innerText = 'Put Mines'
+    document.querySelector('.myButton3').innerText = 'Hide Mines'
     gManualGameMinesNumber=0;
 }
 

@@ -199,7 +199,7 @@ function cellClicked(elCell, i, j) {
             renderCell(elCell, MINE)
         } else if (cell.isMine && gLivesNumber === 1) {
             playBombingEndGameByMinesNumber()
-            document.querySelector(".messageToUser").innerText = 'You Lost '
+            document.querySelector(".messageToUser").innerText = 'You Lost.. Try Again !'
             document.querySelector(".smiley").innerText = '🤯'
             elCell.style.backgroundColor = 'rgb(255, 36, 36)'
             gLivesNumber--;
@@ -209,6 +209,8 @@ function cellClicked(elCell, i, j) {
         }
         checkGameWon();
         gBoardsArray.push(copyArrayToDifferentAddress());
+        gShownCountsArray.push(gGame.shownCount);
+        gMarkedCountArray.push(gGame.markedCount);
     }
 
 }
@@ -224,6 +226,8 @@ function cellMarked(elCell, i, j) {
             renderCell(elCell, EMPTY);
             gGame.markedCount--;
             gBoardsArray.push(copyArrayToDifferentAddress());
+            gShownCountsArray.push(gGame.shownCount);
+            gMarkedCountArray.push(gGame.markedCount);
         } else if (!gBoard[i][j].isShown) {
         playMarkingAudio()
         gBoard[i][j].isMarked = true;
@@ -231,6 +235,8 @@ function cellMarked(elCell, i, j) {
         gGame.markedCount++;
         checkGameWon();
         gBoardsArray.push(copyArrayToDifferentAddress());
+        gShownCountsArray.push(gGame.shownCount);
+        gMarkedCountArray.push(gGame.markedCount);
     }
 }
 

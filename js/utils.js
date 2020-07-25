@@ -152,3 +152,9 @@ function copyArrayToDifferentAddress() {
     return arrayCopy
 }
 
+/////  Copy New gGame Object To A Diffrerent Address  /////
+
+// function copygGameObjectToDifferentaddress(){
+//     var shownCount = gGame.shownCount;
+//     var markedCount = gGame.markedCount;
+// }
