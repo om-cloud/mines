@@ -24,6 +24,9 @@ var gSafeClicksCounter = 3;
 var gBoardsArray = [];
 var gShownCountsArray = [];
 var gMarkedCountArray = [];
+var gLivesArray = [];
+var gSafeClicksArray = [];
+var gHintsCounterArray = [];
 var gIsManualPositionedMines = false;
 var isManualGame = false;
 var gManualGameMinesNumber = 0;
@@ -60,8 +63,7 @@ function initGame() {
     iterateBoardToCountNegMines();
     renderBoard(gBoard);
     gBoardsArray.push(copyArrayToDifferentAddress());
-    gShownCountsArray.push(gGame.shownCount);
-    gMarkedCountArray.push(gGame.markedCount);
+    updateGlobalArraysForUndoing()
     document.querySelector('.myButton3').innerText = 'Hide Mines'
    
 }
@@ -101,8 +103,7 @@ function startCommonFunctionsGame() {
 function startNewManualGame() {
     iterateBoardToCountNegMines();
     gBoardsArray.push(copyArrayToDifferentAddress());
-    gShownCountsArray.push(gGame.shownCount);
-    gMarkedCountArray.push(gGame.markedCount);
+    updateGlobalArraysForUndoing()
     document.querySelector('.myButton3').innerText = '3 Safe Clicks';
     document.querySelector('.myButton3').classList.remove('pushedButton');
     gIsManualPositionedMines = false;
@@ -132,6 +133,8 @@ function reAssignGlobalVariables() {
     gBoardsArray = [];
     gShownCountsArray = [];
     gMarkedCountArray = [];
+    gLivesArray = [];
+    gSafeClicksArray = [];
     gElButton =null;
 }
 

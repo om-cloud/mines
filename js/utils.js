@@ -154,3 +154,50 @@ function copyArrayToDifferentAddress() {
     return arrayCopy
 }
 
+/////  Add Event Long Click For Flagging In Mobile  /////   need to Finish preparing the "right click"
+                                                            // to mobile app
+
+//function addEventsForMobileRightClick() {
+  
+    // Create variable for setTimeout
+    //var delay;
+    
+    // Set number of milliseconds for longpress
+//     var longpress = 1300;
+    
+//     var listItems = document.getElementsByClassName('list-item');
+//     var listItem;
+    
+//     for (var i = 0; i < listItems.length; i++) {
+//       listItem = listItems[i];
+      
+//       listItem.addEventListener('mousedown', function (e) {
+//         var _this = this;
+//         delay = setTimeout(check, longpress);
+        
+//         function check() {
+//             cellMarked(elCell, i, j)
+//         }
+        
+//       }, true);
+      
+//       listItem.addEventListener('mouseup', function (e) {
+//         // On mouse up, we know it is no longer a longpress
+//         clearTimeout(delay);
+//       });
+      
+//       listItem.addEventListener('mouseout', function (e) {
+//         clearTimeout(delay);
+//       });
+      
+//     }
+    
+//   };
+
+// onmousedown="(e) =>{
+//     var _this = this;
+//     var delay = setTimeout(check, longpress);
+//     cellMarked(_this, ${i}, ${j})
+//   };"
+// onmouseup="(e) => { clearTimeout(delay);  });"
+// onmouseout="(e) => { clearTimeout(delay); });"

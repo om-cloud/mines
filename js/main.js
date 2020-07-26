@@ -90,7 +90,7 @@ function renderBoard(board) {
             className += `cell-${i}-${j} hoverOverCell ${addClassesAtChangeLevel(SIZE)}`;
             var elCell = board[i][j];
             var domIcon = EMPTY
-            htmlStr += `<td class="cell ${className}"
+            htmlStr += `<td class="cell list-item ${className}"
            onclick="cellClicked(this, ${i}, ${j});
            exposeneighbours(this, ${i}, ${j});
            putMine(this,${i}, ${j})"
@@ -199,8 +199,7 @@ function cellClicked(elCell, i, j) {
         }
         checkGameWon();
         gBoardsArray.push(copyArrayToDifferentAddress());
-        gShownCountsArray.push(gGame.shownCount);
-        gMarkedCountArray.push(gGame.markedCount);
+        updateGlobalArraysForUndoing();
     }
 
 }
@@ -216,8 +215,7 @@ function cellMarked(elCell, i, j) {
             renderCell(elCell, EMPTY);
             gGame.markedCount--;
             gBoardsArray.push(copyArrayToDifferentAddress());
-            gShownCountsArray.push(gGame.shownCount);
-            gMarkedCountArray.push(gGame.markedCount);
+            updateGlobalArraysForUndoing();
         } else if (!gBoard[i][j].isShown) {
         playMarkingAudio()
         gBoard[i][j].isMarked = true;
@@ -225,8 +223,7 @@ function cellMarked(elCell, i, j) {
         gGame.markedCount++;
         checkGameWon();
         gBoardsArray.push(copyArrayToDifferentAddress());
-        gShownCountsArray.push(gGame.shownCount);
-        gMarkedCountArray.push(gGame.markedCount);
+        updateGlobalArraysForUndoing();
     }
 }
 
@@ -252,6 +249,7 @@ function expandShown(board, cellI, cellJ) {
                 gGame.shownCount++;
                 if (cell.minesAroundCount !== 0) {
                     renderCell(elCellExp, cell.minesAroundCount);
+                 //  Still need to update global vars of a flag that was covered by expand func
                 } else {
                     gExtraNoNegPos.push({
                         i: i,
@@ -296,4 +294,14 @@ function createRandomMinesIndexesArrray() {
     var indexesArray = createRandomOrderNumbersArray(gLevel.SIZE * gLevel.SIZE, gLevel.MINES);
     bubbleSort(indexesArray);
     return indexesArray
+}
+
+/////  Update Arrays For Undo Function  /////
+
+function updateGlobalArraysForUndoing(){
+    gShownCountsArray.push(gGame.shownCount);
+    gMarkedCountArray.push(gGame.markedCount);
+    gLivesArray.push(gLivesNumber);
+    gSafeClicksArray.push(gSafeClicksCounter);
+    gHintsCounterArray.push(gHintsCounter);
 }

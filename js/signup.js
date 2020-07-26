@@ -1,7 +1,7 @@
 'use strict'
 
-function openSignUpForm() {
-    if(gGame.isOn) return
+function openSignUpForm() {  // need to funush connecting the form 
+    if(gGame.isOn) return    // data to local storage with 'Best Time'
     document.querySelector('.container').classList.add('non-display');
     document.querySelector('.form').classList.remove('non-display');
 }

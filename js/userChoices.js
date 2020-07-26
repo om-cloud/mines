@@ -3,6 +3,7 @@
 /////  Give Hint of Cell Neighbours  /////
 
 function giveHint(elButton) {
+    if (!gGame.isOn) return
     gIsHint = true;
     elButton.classList.add('animated-bulb');
     gElButton=elButton;
@@ -110,11 +111,18 @@ function undo() {
         var indexForUndo = gBoardsArray.length - 2
         gGame.shownCount = gShownCountsArray[indexForUndo];
         gGame.markedCount = gMarkedCountArray[indexForUndo];
+        gHintsCounter = gHintsCounterArray[indexForUndo];
+        gSafeClicksCounter = gSafeClicksArray[indexForUndo];
+        gLivesNumber = gLivesArray[indexForUndo];
         gBoard = JSON.parse(JSON.stringify(gBoardsArray[indexForUndo]))
         renderBoardDuringGame();
-        gBoardsArray.splice(indexForUndo + 1, 1) // throw last board in the array And Last Global Vars
-        gShownCountsArray.splice(indexForUndo + 1, 1);
-        gShownCountsArray.splice(indexForUndo + 1, 1);
+        updateGlobalVariables();
+        gBoardsArray.pop(); // throw last board in the array And Last Global Vars
+        gShownCountsArray.pop();
+        gShownCountsArray.pop();
+        gShownCountsArray.pop();
+        gMarkedCountArray.pop();
+        gHintsCounterArray.pop();  // Stil need to render it in the dom  !!!
         playUndoingAudio();
     }
 }
@@ -136,6 +144,13 @@ function renderBoardDuringGame() {
             }
         }
     }
+}
+
+/////  Update Global Variables  /////
+
+function updateGlobalVariables(){
+    document.querySelector('.myButton3').innerText = `${gSafeClicksCounter} Safe Clicks`;
+    document.querySelector('.life').innerText = `Lives : ${gLivesNumber}`
 }
 
 /////  Manually positioned mines  /////
